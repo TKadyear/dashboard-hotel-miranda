@@ -78,7 +78,7 @@
   Response Body: { "rooms": {Object with data of Room} }
   Success Response Code: 200
   ```
-4) Update a specific room
+5) Update a specific room
   Actualiza el estado de una habitación en concreto
   ```
   Route : PUT /rooms/:id
@@ -86,7 +86,7 @@
   Success Response Code: 200
   ```
 
-5) Delete
+6) Delete
   Eliminar la habitación en la base de datos
   ```
   Route : DELETE /rooms/:id
