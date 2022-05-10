@@ -4,28 +4,27 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Rooms } from "./pages/Rooms";
 import { NoMatch } from "./pages/NoMatch";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { NavBar } from "./components/base/NavBar";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 const PrivateRoute = (props) => {
   let auth;
-  auth = false;
+  auth = true;
   // TODO Make a real auth Login
   return !auth ? (<Navigate to="/login" />) : props.component;
 };
 
-
 function App() {
   // TODO Change the layout for the differents routes
   return (
-    <>
-      <header className="App-header">
-        <p >Aqui va un navBar</p>
-        <Link to="/"> Home</Link>
-        <Link to="/rooms"> Rooms</Link>
-        <Link to="/contact">Contact </Link>
-        <Link to="/bookings"> Bookings</Link>
-
-      </header>
+    <Container>
+      <NavBar links={["Dashboard", "Rooms", "Contact", "Bookings"]} />
       <div className="App">
         <Routes>
           <Route path="/" element={<PrivateRoute component={<Home />} />} />
@@ -36,7 +35,7 @@ function App() {
           <Route path="/*" element={<NoMatch />} />
         </Routes>
       </div>
-    </>
+    </Container>
   );
 }
 
