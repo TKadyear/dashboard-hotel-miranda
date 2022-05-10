@@ -1,15 +1,25 @@
 import { Bookings } from "./pages/Bookings";
 import { Contact } from "./pages/Contact";
 import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
 import { Rooms } from "./pages/Rooms";
 import { NoMatch } from "./pages/NoMatch";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
+
+const PrivateRoute = (props) => {
+  let auth;
+  auth = false;
+  // TODO Make a real auth Login
+  return !auth ? (<Navigate to="/login" />) : props.component;
+};
+
 
 function App() {
+  // TODO Change the layout for the differents routes
   return (
     <>
       <header className="App-header">
-        <p>Aqui va un navBar</p>
+        <p >Aqui va un navBar</p>
         <Link to="/"> Home</Link>
         <Link to="/rooms"> Rooms</Link>
         <Link to="/contact">Contact </Link>
@@ -18,10 +28,11 @@ function App() {
       </header>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/rooms" element={<Rooms />} />
-          <Route path="/bookings" element={<Bookings />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<PrivateRoute component={<Home />} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/rooms" element={<PrivateRoute component={<Rooms />} />} />
+          <Route path="/bookings" element={<PrivateRoute component={<Bookings />} />} />
+          <Route path="/contact" element={<PrivateRoute component={<Contact />} />} />
           <Route path="/*" element={<NoMatch />} />
         </Routes>
       </div>
