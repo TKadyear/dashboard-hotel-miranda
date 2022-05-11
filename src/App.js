@@ -9,7 +9,7 @@ import { NavBar } from "./components/base/NavBar";
 import styled from "styled-components";
 
 const Container = styled.div`
-  display: flex;
+  display: ${props => props.auth ? "flex" : "block"};
   flex-direction: row;
 `;
 
@@ -23,8 +23,8 @@ const PrivateRoute = (props) => {
 function App() {
   // TODO Change the layout for the differents routes
   return (
-    <Container>
-      <NavBar links={["Dashboard", "Rooms", "Contact", "Bookings"]} />
+    <Container auth={false}>
+      <NavBar auth={false} links={["Dashboard", "Rooms", "Contact", "Bookings"]} />
       <div className="App">
         <Routes>
           <Route path="/" element={<PrivateRoute component={<Home />} />} />
