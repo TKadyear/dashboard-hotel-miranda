@@ -1,3 +1,9 @@
+import { TopBar } from "../components/base/style-component";
+
 export const Users = () => {
-  return (<h1>Estas en Users</h1>);
+  return (<>
+    <TopBar>
+      <h1>Users</h1>
+    </TopBar>
+  </>);
 };

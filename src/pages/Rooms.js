@@ -1,3 +1,9 @@
+import { TopBar } from "../components/base/style-component";
+
 export const Rooms = () => {
-  return (<h1>Estas en Rooms</h1>);
+  return (<>
+    <TopBar>
+      <h1>Rooms</h1>
+    </TopBar>
+  </>);
 };
