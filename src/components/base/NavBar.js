@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
+import { useAuth } from "./App/context-auth";
 const SideBar = styled.div`
   height: 100vh;
   width: ${props => props.open ? "100px" : "24px"};
@@ -16,9 +17,10 @@ const SideBar = styled.div`
 `;
 // TODO que no se vea si no estas logeado, dato que pasa por redux
 export const NavBar = (props) => {
+  const auth = useAuth();
   const [open, setOpen] = useState(false);
   return (
-    <SideBar auth={false} open={open} onClick={() => setOpen(prev => !prev)}>
+    <SideBar auth={auth} open={open} onClick={() => setOpen(prev => !prev)}>
       <p>Logo</p>
       {props.links.map(route => (<Link key={route} to={`/${route === "Dashboard" ? "" : route.toLowerCase()}`}>{route}</Link>))}
 
