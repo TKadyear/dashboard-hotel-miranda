@@ -27,7 +27,7 @@ message:{
       required: true
     },
     date:{
-      type: "DD/MM/AA 00:00",// No se si tipo Date o String
+      type: String "D Mon YY",// No se si tipo Date o String
       required: true
     },
   },
@@ -42,20 +42,14 @@ message:{
 ```javascript
 roomBooked:{
   id:{
-    type: String,
+    type: String,gu
     required: true,
     default: generateUniqueId()//Hay que hacer una función que genere un random ID o buscar una librería.
   },
-  guest:{
-    firstName:{
+  guest:{ // FullName of the guest
       type: String,
       required: true
     },
-    surname:{
-      type: String,
-      required: true
-    },
-  },
   order_date:{
     type: "DD/MM/AA 00:00",// No se si tipo Date o String
     required: true
@@ -108,7 +102,7 @@ room:{
       required: true
     },
     bedType:{
-      type: String,
+      type: String,//https://www.warehousehotel.com/manheim/blog/different-bed-sizes-in-hotels
       required: true
     },
     number:{
