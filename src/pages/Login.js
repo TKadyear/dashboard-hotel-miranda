@@ -1,8 +1,12 @@
+import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { Button, ContainerCard, Input } from "../components/base/style-component";
 import { useAuth, useAuthUpdate } from "../App/context-auth";
+import { allUsers } from "../features/users/usersSlice";
+import { validationUser } from "../services/validation-db";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Container = styled.div`
   width:max-content;
@@ -11,20 +15,25 @@ const Container = styled.div`
   padding: 2.5rem;
 `;
 
-// TODO si estas login que te redirija a otra página.
+
 export const Login = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const auth = useAuth();
   const setAuth = useAuthUpdate();
   const navigate = useNavigate();
-  if (auth) {
-    navigate("/", { replace: true });
-  }
+  const dataUsers = useSelector(allUsers);
+  useEffect(() => {
+    if (auth) {
+      navigate("/", { replace: true });
+    }
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user === "1" && password == "12") {
-      setAuth(true);
+    const login = { user: user, password: password };
+    const isValid = validationUser(dataUsers, login);
+    setAuth(isValid);
+    if (isValid) {
       navigate("/", { replace: true });
     }
   };
