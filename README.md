@@ -45,6 +45,6 @@ $ npm run build
 ## Useful Resources
 - Generate fake data base : [Mockaroo](https://mockaroo.com/)
 - Private Route : [Private Route in React Router v6](https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5)
-
+- Convert a string into hexString: [SubtleCryto/digest](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest)
 ## Author
 - Github - [Tamara Kadyear | TKadyear](https://github.com/TKadyear)
