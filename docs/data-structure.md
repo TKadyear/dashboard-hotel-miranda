@@ -8,11 +8,7 @@ message:{
     default: generateUniqueId()//Hay que hacer una función que genere un random ID o buscar una librería.
   }
   customer:{
-    firstName:{
-      type: String,
-      required: true
-    },
-    surname:{
+    fullName:{
       type: String,
       required: true
     },
@@ -29,10 +25,6 @@ message:{
     comment:{
       type:String,
       required: true
-    },
-    rating:{
-      type: Number,
-      required:false
     },
     date:{
       type: "DD/MM/AA 00:00",// No se si tipo Date o String
