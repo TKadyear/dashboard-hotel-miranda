@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
-import { useAuth } from "./App/context-auth";
+import { useAuth } from "../../App/context-auth";
 const SideBar = styled.div`
   height: 100vh;
   width: ${props => props.open ? "100px" : "24px"};
