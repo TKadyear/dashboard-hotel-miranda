@@ -174,7 +174,7 @@ user:{
       required: true
     },
     password:{
-      type: String, //hash in LocalStorage
+      type: String, //hash in LocalStorage and the password is the surname
       required: true
     }
     telephone_number:{
@@ -182,8 +182,8 @@ user:{
       required: true
     },
     photo:{
-      type: Array, //min 3 images, max 5
-      required: true
+      type: String,
+      required: false
     },
   },
   job:{

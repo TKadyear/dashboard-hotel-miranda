@@ -5,3 +5,5 @@ async function digestMessage(message) {
   const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
   return hashHex;
 }
+
+//digestMessage("Kadyear").then(digestBuffer => console.log(digestBuffer));
