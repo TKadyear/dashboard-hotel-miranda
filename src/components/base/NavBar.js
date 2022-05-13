@@ -7,6 +7,7 @@ const SideBar = styled.div`
   width: ${props => props.open ? "100px" : "24px"};
   padding: 1.5rem;
   background-color: grey;
+  /* position: fixed; */
   display: ${props => props.auth ? "flex" : "none"};
   flex-direction: column;
   justify-content: space-around;

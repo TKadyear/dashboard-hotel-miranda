@@ -1,3 +1,9 @@
+import { TopBar } from "../components/base/style-component";
+
 export const Contact = () => {
-  return (<h1>Estas en Contact</h1>);
+  return (<>
+    <TopBar>
+      <h1>Contact</h1>
+    </TopBar>
+  </>);
 };

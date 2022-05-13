@@ -39,3 +39,8 @@ export const Input = styled.input`
     border-color: #135846;
   }
 `;
+export const TopBar = styled.div`
+  background-color: white;
+  /* width:75vw; */
+
+`;

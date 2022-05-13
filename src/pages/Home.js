@@ -1,3 +1,10 @@
+import { TopBar } from "../components/base/style-component";
 export const Home = () => {
-  return (<h1>Estas en Home</h1>);
+  return (
+    <>
+      <TopBar>
+        <h1>Home</h1>
+      </TopBar>
+    </>
+  );
 };
