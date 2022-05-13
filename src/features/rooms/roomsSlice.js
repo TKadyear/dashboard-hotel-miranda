@@ -9,7 +9,7 @@ export const roomsSlice = createSlice({
 
 
 
-export const roomList = state => state.bookings;
+export const roomList = state => state.rooms;
 export const room = id => state => [...state.rooms].find(room => room.id === id);
 
 // export const { addPhoto, removePhoto, editDescription } = myPhotosSlice.actions;
