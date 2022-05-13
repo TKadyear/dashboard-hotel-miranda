@@ -42,7 +42,7 @@ message:{
 ```javascript
 roomBooked:{
   id:{
-    type: String,gu
+    type: String,
     required: true,
     default: generateUniqueId()//Hay que hacer una función que genere un random ID o buscar una librería.
   },
@@ -73,11 +73,26 @@ roomBooked:{
     required: false
   },
   room:{
-    id:{
-      type: String,// Quizás para esto es mejor consultar a la base de datos que tiene esta habitación sola y no guardarla, para no tener datos duplicados.
-      // GET /room/:id/info
+    photos:{
+      type: Array, //min 3 images, max 5
       required: true
     },
+    bedType:{
+      type: String,//https://www.warehousehotel.com/manheim/blog/different-bed-sizes-in-hotels
+      required: true
+    },
+    number:{
+      type: Number,
+      required: true
+    },
+    description:{
+      type: String,
+      required: true
+    },
+    facilities:{// Before Amenities
+      type: Array,
+      required: true
+    }
 
   },
   status:{

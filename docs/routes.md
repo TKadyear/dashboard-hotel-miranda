@@ -33,9 +33,7 @@
   Lee una habitación reservada
   ```
   Route : GET /booking/:id
-  Response Body: { "booking": {
-
-  } }
+  Response Body: { "booking": {Object with data of Booked Room} }
   Success Response Code: 200
   ```
 4) Update a specific room
@@ -71,14 +69,7 @@
   Response Body: { "rooms": {Object with data of Room} }
   Success Response Code: 200
   ```
-4) Read a specific room and basic information of the room
-  Lee los datos de una habitación
-  ```
-  Route : GET /rooms/:id/info
-  Response Body: { "rooms": {Object with data of Room} }
-  Success Response Code: 200
-  ```
-5) Update a specific room
+4) Update a specific room
   Actualiza el estado de una habitación en concreto
   ```
   Route : PUT /rooms/:id
@@ -131,33 +122,33 @@
   Response Body: None
   Success Response Code: 204
   ```
-### Contact ??
+### Contact
 
 1) Create
   Crear el mensaje de contacto (por parte del cliente)
   ```
-  Route : POST /reviews
-  Response Body: { "reviews":The Newly-Created Review  }
+  Route : POST /contact
+  Response Body: { "message":The Newly-Created Message  }
   Success Response Code: 200
   ```
 2) Read
-  Lee todos/as las reviews
+  Lee todos/as las contact
   ```
-  Route : GET /reviews
-  Response Body: { "reviews": [ Array of All Reviews ] }
+  Route : GET /contact
+  Response Body: { "message": [ Array of All messages ] }
   Success Response Code: 200
   ```
 3) Update a User
-  Actualiza los datos de una review-
+  Actualiza los datos de una mensaje de contacto
   ```
-  Route : PUT /reviews/:id
-  Response Body: { "reviews": The updated review now saved in the database }
+  Route : PUT /contact/:id
+  Response Body: { "message": The updated review now saved in the database }
   Success Response Code: 200
   ```
 
 4) Delete
   Eliminar review de la base de datos
   ```
-  Route : DELETE /review/:id
+  Route : DELETE /contact/:id
   Response Body: None
   Success Response Code: 204
