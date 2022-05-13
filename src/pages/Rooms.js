@@ -5,6 +5,7 @@ import { roomList } from "../features/rooms/roomsSlice";
 const Table = styled.table`
   background-color: white;
   border-radius: 12px;
+  padding:1rem;
 `;
 const StatusBadge = styled.div`
   color: white;
