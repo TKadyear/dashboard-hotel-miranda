@@ -8,10 +8,13 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { NavBar } from "./components/base/NavBar";
 import { useAuth } from "./App/context-auth";
 import styled from "styled-components";
+import { useState } from "react";
 
 const Container = styled.div`
-  display: ${props => props.auth ? "flex" : "block"};
-  flex-direction: row;
+  display: ${props => props.auth ? "grid" : "block"};
+  grid-template-columns: 200px 1fr;
+  /* grid-template-columns: ${props => props.open ? "200px 1fr" : "75px 1fr"} ; */
+  grid-template-rows: 80px 1fr;
 `;
 
 const PrivateRoute = (props) => {
@@ -22,10 +25,11 @@ const PrivateRoute = (props) => {
 
 function App() {
   const auth = useAuth();
+  const [open, setOpen] = useState(false);
   // TODO Change the layout for the differents routes
   return (
-    <Container auth={auth}>
-      <NavBar auth={auth} links={["Dashboard", "Rooms", "Contact", "Bookings"]} />
+    <Container open={open} auth={auth}>
+      <NavBar auth={auth} open={open} setOpen={setOpen} links={["Dashboard", "Rooms", "Contact", "Bookings"]} />
       <div className="App">
         <Routes>
           <Route path="/" element={<PrivateRoute component={<Home />} />} />
