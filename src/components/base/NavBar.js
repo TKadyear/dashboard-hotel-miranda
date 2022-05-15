@@ -1,9 +1,10 @@
-import { useAuth } from "../../App/context-auth";
+import { useAuth, useEmployee } from "../../App/context-auth";
 import { useLocation } from "react-router-dom";
 import { Section, SideBar, Logo, Link, ContactCard, Title, Subtitle, BtnContact, InfoFooter } from "./NavBarStyleComponents";
 
 export const NavBar = (props) => {
   const auth = useAuth();
+  const employee = useEmployee();
   const handleClick = () => props.setOpen(prev => !prev);
   const { pathname } = useLocation();
 
@@ -23,13 +24,13 @@ export const NavBar = (props) => {
         </Section >
       ))
       }
-      <ContactCard open={props.open}>
+      {auth && <ContactCard open={props.open}>
         <p>
-          <strong>William Johanson</strong><br />
-          williamjohn@mail.com
+          <strong>{`${employee.personal_info.firstName} ${employee.personal_info.surname}`}</strong><br />
+          {employee.personal_info.email}
         </p>
         <BtnContact>Contact Us</BtnContact>
-      </ContactCard>
+      </ContactCard>}
       <InfoFooter open={props.open}>
         <strong>Travl Hotel Admin Dashboard</strong>
         <p>© 2022 All Rights Reserved</p>
