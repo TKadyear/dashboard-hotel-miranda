@@ -13,6 +13,8 @@ import { ReactComponent as DashboardIcon } from "./assets/icons/dashboard.svg";
 import { ReactComponent as BookingsIcon } from "./assets/icons/bookings.svg";
 import { ReactComponent as RoomsIcon } from "./assets/icons/rooms.svg";
 import { ReactComponent as ContactIcon } from "./assets/icons/contact.svg";
+import { ReactComponent as UsersIcon } from "./assets/icons/users.svg";
+import { Users } from "./pages/Users";
 
 const Container = styled.div`
   display: block;
@@ -48,6 +50,11 @@ function App() {
     path: "/contact",
     name: "Contact",
     icon: <ContactIcon />
+  },
+  {
+    path: "/users",
+    name: "Users",
+    icon: <UsersIcon />
   }
   ];
   return (
@@ -74,6 +81,11 @@ function App() {
           <Route path="/contact" element={<PrivateRoute component={
             <Container open={open}>
               <Contact />
+            </Container>
+          } />} />
+          <Route path="/users" element={<PrivateRoute component={
+            <Container open={open}>
+              <Users />
             </Container>
           } />} />
           <Route path="/*" element={<NoMatch />} />
