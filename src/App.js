@@ -9,6 +9,10 @@ import { NavBar } from "./components/base/NavBar";
 import { useAuth } from "./App/context-auth";
 import styled from "styled-components";
 import { useState } from "react";
+import { ReactComponent as DashboardIcon } from "./assets/icons/dashboard.svg";
+import { ReactComponent as BookingsIcon } from "./assets/icons/bookings.svg";
+import { ReactComponent as RoomsIcon } from "./assets/icons/rooms.svg";
+import { ReactComponent as ContactIcon } from "./assets/icons/contact.svg";
 
 const Container = styled.div`
   display: ${props => props.auth ? "grid" : "block"};
@@ -27,9 +31,30 @@ function App() {
   const auth = useAuth();
   const [open, setOpen] = useState(false);
   // TODO Change the layout for the differents routes
+  const links = [{
+    path: "/",
+    name: "Dashboard",
+    icon: <DashboardIcon />
+  },
+  {
+    path: "/rooms",
+    name: "Rooms",
+    icon: <RoomsIcon />
+  },
+  {
+    path: "/bookings",
+    name: "Bookings",
+    icon: <BookingsIcon />
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    icon: <ContactIcon />
+  }
+  ];
   return (
     <Container open={open} auth={auth}>
-      <NavBar auth={auth} open={open} setOpen={setOpen} links={["Dashboard", "Rooms", "Contact", "Bookings"]} />
+      <NavBar auth={auth} open={open} setOpen={setOpen} links={links} />
       <div className="App">
         <Routes>
           <Route path="/" element={<PrivateRoute component={<Home />} />} />
