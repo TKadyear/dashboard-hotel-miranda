@@ -29,7 +29,7 @@ export const NavBar = (props) => {
           <strong>{`${employee.personal_info.firstName} ${employee.personal_info.surname}`}</strong><br />
           {employee.personal_info.email}
         </p>
-        <BtnContact>Contact Us</BtnContact>
+        <BtnContact>Edit Profile</BtnContact>
       </ContactCard>}
       <InfoFooter open={props.open}>
         <strong>Travl Hotel Admin Dashboard</strong>
