@@ -15,7 +15,7 @@ export const ContainerCard = styled.div`
   background: white;
   padding: 2.5rem;
   padding-bottom: 1.5rem;
-  box-shadow: 0 4px 8px #58565617;
+  box-shadow: ${props => props.theme.boxShadow.dirY};
   border-radius: 12px;
   position:relative;
   margin-top: 37.5px;/* Es por tema del :after*/
@@ -28,7 +28,7 @@ export const ContainerCard = styled.div`
     width: 75px;
     height: 75px;
     border-radius: 6px;
-    background: url(./img/LogoHotel.svg) no-repeat;
+    background:${props => props.img ? `url(${props.img}) no-repeat` : ""};
   }
 `;
 export const Input = styled.input`

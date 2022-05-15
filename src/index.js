@@ -5,14 +5,18 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./App/context-auth";
 import { Provider } from "react-redux";
 import store from "./App/store";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./App/theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter basename="dashboard-hotel-miranda">
     <Provider store={store}>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </ThemeProvider>
     </Provider>
   </BrowserRouter>
 );

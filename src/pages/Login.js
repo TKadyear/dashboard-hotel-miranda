@@ -39,7 +39,7 @@ export const Login = () => {
   };
   return (
     <Container>
-      <ContainerCard image="grey">
+      <ContainerCard img="./img/LogoHotel.svg">
         <h1>Log in to your account</h1>
         <label>
           Email Address
