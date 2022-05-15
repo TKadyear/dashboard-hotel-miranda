@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth } from "../../App/context-auth";
-import { useLocation, matchPath } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const SideBar = styled.div`
   height: 100vh;
   width: ${props => props.open ? "300px" : "70px"};
@@ -86,26 +86,12 @@ const Logo = styled.div`
 
 `;
 
-function useRouteMatch(patterns) {
-  const { pathname } = useLocation();
-  console.log(pathname);
-  for (let i = 0; i < patterns.length; i++) {
-    const pattern = patterns[i];
-    const possibleMatch = matchPath(pattern, pathname);
-    if (possibleMatch !== null) {
-      return possibleMatch;
-    }
-  }
-
-  return null;
-}
 
 export const NavBar = (props) => {
   const auth = useAuth();
   const handleClick = () => props.setOpen(prev => !prev);
-  const possibleRoutes = props.links.map(route => route.path);
-  const routeMatch = useRouteMatch(possibleRoutes);
-  const currentTab = routeMatch?.pattern?.path;
+  const { pathname } = useLocation();
+
   return (
     <SideBar auth={auth} open={props.open} >
       <Logo onClick={handleClick}>
@@ -114,7 +100,7 @@ export const NavBar = (props) => {
         <Subtitle open={props.open} >Hotel Admin Dashboard</Subtitle>
       </Logo>
       {props.links.map(route => (
-        <Section key={route.name} onClick={handleClick} active={currentTab === route.path}>
+        <Section key={route.name} onClick={handleClick} active={pathname === route.path}>
           {route.icon}
           <Link
             open={props.open}
