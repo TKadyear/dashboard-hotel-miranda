@@ -15,10 +15,8 @@ import { ReactComponent as RoomsIcon } from "./assets/icons/rooms.svg";
 import { ReactComponent as ContactIcon } from "./assets/icons/contact.svg";
 
 const Container = styled.div`
-  display: ${props => props.auth ? "grid" : "block"};
-  grid-template-columns: 200px 1fr;
-  /* grid-template-columns: ${props => props.open ? "200px 1fr" : "75px 1fr"} ; */
-  grid-template-rows: 80px 1fr;
+  display: block;
+  padding-left: ${props => props.open ? "300px" : "70px"} ;
 `;
 
 const PrivateRoute = (props) => {
@@ -53,19 +51,35 @@ function App() {
   }
   ];
   return (
-    <Container open={open} auth={auth}>
+    <div>
       <NavBar auth={auth} open={open} setOpen={setOpen} links={links} />
       <div className="App">
         <Routes>
-          <Route path="/" element={<PrivateRoute component={<Home />} />} />
+          <Route path="/" element={<PrivateRoute component={
+            <Container open={open}>
+              <Home />
+            </Container>
+          } />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/rooms" element={<PrivateRoute component={<Rooms />} />} />
-          <Route path="/bookings" element={<PrivateRoute component={<Bookings />} />} />
-          <Route path="/contact" element={<PrivateRoute component={<Contact />} />} />
+          <Route path="/rooms" element={<PrivateRoute component={
+            <Container open={open}>
+              <Rooms />
+            </Container>
+          } />} />
+          <Route path="/bookings" element={<PrivateRoute component={
+            <Container open={open}>
+              <Bookings />
+            </Container>
+          } />} />
+          <Route path="/contact" element={<PrivateRoute component={
+            <Container open={open}>
+              <Contact />
+            </Container>
+          } />} />
           <Route path="/*" element={<NoMatch />} />
         </Routes>
       </div>
-    </Container>
+    </div>
   );
 }
 

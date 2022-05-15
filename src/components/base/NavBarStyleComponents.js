@@ -3,19 +3,15 @@ import { ContainerCard, Button } from "./style-component.js";
 import { NavLink } from "react-router-dom";
 
 export const SideBar = styled.div`
-  height: 100vh;
-  padding: 1rem 0;
-  width: ${props => props.open ? "300px" : "70px"};
-  background-color: white;
   position: fixed;
+  top: 0;
+  height: 100vh;
+  width: ${props => props.open ? "300px" : "70px"};
+  padding: 1rem 0;
+  background-color: white;
   display: ${props => props.auth ? "block" : "none"};
-  /* flex-direction: column; */
-  /* gap: 2rem; */
   transition: 0.1s;
   box-shadow: ${props => props.theme.boxShadow.dirX};
-  :hover{
-    /* width: 300px; */
-  }
   img {
     max-width: 40px;
     grid-row: 1/3;
