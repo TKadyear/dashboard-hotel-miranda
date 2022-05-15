@@ -40,6 +40,9 @@ export const Input = styled.input`
     border-color: #135846;
   }
 `;
+export const Container = styled.div`
+  padding: 2.75rem 2.5rem;
+`;
 export const Bar = styled.div`
   height: 75px;
   padding: 1rem 1.5rem;
