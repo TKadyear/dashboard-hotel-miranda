@@ -7,6 +7,7 @@ export const Button = styled.button`
   border-radius: 0.5rem;
   font-weight: bold;
   color: #FFFFFF;
+  cursor:pointer;
 `;
 export const ContainerCard = styled.div`
   display: grid;
