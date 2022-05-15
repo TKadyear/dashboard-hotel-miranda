@@ -28,7 +28,7 @@ export const ContainerCard = styled.div`
     width: 75px;
     height: 75px;
     border-radius: 6px;
-    background: ${props => props.image}
+    background: url(./img/LogoHotel.svg) no-repeat;
   }
 `;
 export const Input = styled.input`
