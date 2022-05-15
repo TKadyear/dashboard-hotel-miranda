@@ -27,7 +27,7 @@ export const Rooms = () => {
       </thead>
       <tbody>
         {rooms.map(room => {
-          console.log(room);
+          // console.log(room);
           return (
             <tr key={room.id} >
               <td>{room.id}</td>
