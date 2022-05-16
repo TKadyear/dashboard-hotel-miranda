@@ -4,6 +4,7 @@ import { bookingsList } from "../features/bookings/bookingsSlice";
 import { Table, StatusBadge } from "../components/TableStyleComponent";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Pagination } from "../components/Pagination";
 
 export const Bookings = () => {
   const [page, setPage] = useState(0);
@@ -13,12 +14,7 @@ export const Bookings = () => {
   const handleClick = (id) => {
     navigate(id);
   };
-  const handleNextPage = () => {
-    setPage(prev => prev + 1 > rooms.length ? prev : prev + 1);
-  };
-  const handlePreviousPage = () => {
-    setPage(prev => prev - 1 < 0 ? prev : prev - 1);
-  };
+
   const handleChangePage = (number) => setPage(number);
   return (<>
     <TopBar>
@@ -37,11 +33,7 @@ export const Bookings = () => {
         </tbody>
       </Table>
     </Container>
-    <div>
-      <button onClick={handlePreviousPage}>Previous Page</button>
-      {rooms.map((v, i) => <button key={v + i} onClick={() => handleChangePage(i)}>{i + 1}</button>)}
-      <button onClick={handleNextPage}>Next Page</button>
-    </div>
+    <Pagination pages={rooms} onClick={handleChangePage} actualPage={page} />
   </>);
 };
 const TableRow = ({ room, onClick }) => (<tr onClick={() => onClick(room.id)}>

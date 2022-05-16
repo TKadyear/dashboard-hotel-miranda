@@ -9,7 +9,8 @@ const theme = {
     inactiveTabs: "#767676",
     barInactiveTabs: "#d4d4d4",
     textColor: "#262626",
-    light: "#799283"
+    light: "#799283",
+    white: "#FFFFFF"
   },
   font: "'Poppins', sans-serif",
   fontSizes: {
