@@ -5,7 +5,7 @@ import { Login } from "./pages/Login";
 import { Rooms } from "./pages/Rooms";
 import { NoMatch } from "./pages/NoMatch";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { NavBar } from "./components/base/NavBar";
+import { NavBar } from "./components/NavBar";
 import { useAuth } from "./App/context-auth";
 import styled from "styled-components";
 import { useState } from "react";

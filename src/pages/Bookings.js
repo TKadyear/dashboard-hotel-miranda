@@ -1,9 +1,10 @@
-import { TopBar, Container } from "../components/base/style-component";
+import { TopBar, Container } from "../components/style-component";
 import { useSelector } from "react-redux";
 import { bookingsList } from "../features/bookings/bookingsSlice";
 import { Table, StatusBadge } from "../components/TableStyleComponent";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 export const Bookings = () => {
   const [page, setPage] = useState(0);
   const rooms = useSelector(bookingsList);
@@ -12,7 +13,13 @@ export const Bookings = () => {
   const handleClick = (id) => {
     navigate(id);
   };
-  const handleNextPage = () => setPage(prev => prev + 1);
+  const handleNextPage = () => {
+    setPage(prev => prev + 1 > rooms.length ? prev : prev + 1);
+  };
+  const handlePreviousPage = () => {
+    setPage(prev => prev - 1 < 0 ? prev : prev - 1);
+  };
+  const handleChangePage = (number) => setPage(number);
   return (<>
     <TopBar>
       <h1>Bookings</h1>
@@ -30,7 +37,11 @@ export const Bookings = () => {
         </tbody>
       </Table>
     </Container>
-    <button onClick={handleNextPage}>Next Page</button>
+    <div>
+      <button onClick={handlePreviousPage}>Previous Page</button>
+      {rooms.map((v, i) => <button key={v + i} onClick={() => handleChangePage(i)}>{i + 1}</button>)}
+      <button onClick={handleNextPage}>Next Page</button>
+    </div>
   </>);
 };
 const TableRow = ({ room, onClick }) => (<tr onClick={() => onClick(room.id)}>

@@ -1,4 +1,4 @@
-import { TopBar, Container } from "../components/base/style-component";
+import { TopBar, Container } from "../components/style-component";
 import { Table, StatusBadge } from "../components/TableStyleComponent";
 import { useSelector } from "react-redux";
 import { roomList } from "../features/rooms/roomsSlice";

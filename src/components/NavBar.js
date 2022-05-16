@@ -1,4 +1,4 @@
-import { useAuth, useEmployee } from "../../App/context-auth";
+import { useAuth, useEmployee } from "../App/context-auth";
 import { useLocation } from "react-router-dom";
 import { Section, SideBar, Logo, Link, ContactCard, Title, Subtitle, BtnContact, InfoFooter } from "./NavBarStyleComponents";
 

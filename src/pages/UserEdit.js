@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { TopBar } from "../components/base/style-component";
+import { TopBar } from "../components/style-component";
 
 export const UserEdit = () => {
   const { id } = useParams();

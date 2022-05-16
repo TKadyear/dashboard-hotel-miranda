@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, ContainerCard, Input } from "../components/base/style-component";
+import { Button, ContainerCard, Input } from "../components/style-component";
 import { useAuth, useAuthUpdate } from "../App/context-auth";
 import { allUsers } from "../features/users/usersSlice";
 import { findUser, validationUser } from "../services/validation-db";

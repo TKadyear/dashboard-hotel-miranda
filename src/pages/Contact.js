@@ -1,4 +1,4 @@
-import { TopBar, Container } from "../components/base/style-component";
+import { TopBar, Container } from "../components/style-component";
 
 export const Contact = () => {
   // const rooms = useSelector(roomList);
