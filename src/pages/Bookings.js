@@ -15,25 +15,23 @@ export const Bookings = () => {
 
       <Table>
         <thead>
-          {dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}
+          <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
         </thead>
         <tbody>
           {rooms.map(room => {
-            console.log(room);
-            return (
-              <tr key={room.id} >
-                <td>{room.guest}</td>
-                <td>{room.order_date}</td>
-                <td>{room.booking.check_in}</td>
-                <td>{room.booking.check_in}</td>
-                <td>View Notes</td>
-                <td>{room.status}</td>
-                <td><StatusBadge status={room.available}>{room.available ? "Available" : "Booked"}</StatusBadge></td>
-              </tr>
-            );
+            return (<TableRow key={room.id} room={room} />);
           })}
         </tbody>
       </Table>
     </Container>
   </>);
 };
+const TableRow = ({ room }) => (<tr  >
+  <td>{room.guest}</td>
+  <td>{room.order_date}</td>
+  <td>{room.booking.check_in}</td>
+  <td>{room.booking.check_in}</td>
+  <td>View Notes</td>
+  <td>{room.status}</td>
+  <td><StatusBadge status={room.available}>{room.available ? "Available" : "Booked"}</StatusBadge></td>
+</tr>);
