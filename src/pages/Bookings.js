@@ -3,13 +3,16 @@ import { useSelector } from "react-redux";
 import { bookingsList } from "../features/bookings/bookingsSlice";
 import { Table, StatusBadge } from "../components/TableStyleComponent";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 export const Bookings = () => {
+  const [page, setPage] = useState(0);
   const rooms = useSelector(bookingsList);
-  const dataToDisplay = ["Guest,", "Order Date", "Check in", "Check out", "Special Request", "Status"];
+  const dataToDisplay = ["Guest", "Order Date", "Check in", "Check out", "Special Request", "Status"];
   const navigate = useNavigate();
   const handleClick = (id) => {
     navigate(id);
   };
+  const handleNextPage = () => setPage(prev => prev + 1);
   return (<>
     <TopBar>
       <h1>Bookings</h1>
@@ -21,12 +24,13 @@ export const Bookings = () => {
           <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
         </thead>
         <tbody>
-          {rooms.map(room => {
+          {rooms[page].map(room => {
             return (<TableRow key={room.id} room={room} onClick={handleClick} />);
           })}
         </tbody>
       </Table>
     </Container>
+    <button onClick={handleNextPage}>Next Page</button>
   </>);
 };
 const TableRow = ({ room, onClick }) => (<tr onClick={() => onClick(room.id)}>
