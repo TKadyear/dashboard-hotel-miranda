@@ -15,7 +15,9 @@ import { ReactComponent as RoomsIcon } from "./assets/icons/rooms.svg";
 import { ReactComponent as ContactIcon } from "./assets/icons/contact.svg";
 import { ReactComponent as UsersIcon } from "./assets/icons/users.svg";
 import { Users } from "./pages/Users";
-
+import { BookedRoom } from "./pages/BookedRoom";
+import { NewUser } from "./pages/NewUser";
+import { UserEdit } from "./pages/UserEdit";
 const Container = styled.div`
   display: block;
   padding-left: ${props => props.open ? "300px" : "70px"} ;
@@ -73,9 +75,14 @@ function App() {
               <Rooms />
             </Container>
           } />} />
-          <Route path="/bookings" element={<PrivateRoute component={
+          <Route path="bookings" element={<PrivateRoute component={
             <Container open={open}>
               <Bookings />
+            </Container>
+          } />} />
+          <Route path="bookings/:id" element={<PrivateRoute component={
+            <Container open={open}>
+              <BookedRoom />
             </Container>
           } />} />
           <Route path="/contact" element={<PrivateRoute component={
@@ -88,7 +95,17 @@ function App() {
               <Users />
             </Container>
           } />} />
-          <Route path="/*" element={<NoMatch />} />
+          <Route path="users/new-user" element={<PrivateRoute component={
+            <Container open={open}>
+              <NewUser />
+            </Container>
+          } />} />
+          <Route path="users/:id/edit" element={<PrivateRoute component={
+            <Container open={open}>
+              <UserEdit />
+            </Container>
+          } />} />
+          <Route path="/*" element={<Container open={open}><NoMatch /></Container>} />
         </Routes>
       </div>
     </div>
