@@ -5,6 +5,7 @@ import { roomList } from "../features/rooms/roomsSlice";
 import { Pagination } from "../components/Pagination";
 import { useState } from "react";
 import { splitForPagination } from "../services/pagination";
+import { Page } from "../components/PageContainer";
 
 export const Rooms = () => {
   const [page, setPage] = useState(0);
@@ -12,7 +13,7 @@ export const Rooms = () => {
   const roomsPages = splitForPagination(rooms);
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
   const handleChangePage = (number) => setPage(number);
-  return (<>
+  return (<Page>
     <TopBar>
       <h1>Rooms</h1>
     </TopBar>
@@ -39,5 +40,5 @@ export const Rooms = () => {
       </Table>
     </Container>
     <Pagination pages={roomsPages} onClick={handleChangePage} actualPage={page} />
-  </>);
+  </Page>);
 };
