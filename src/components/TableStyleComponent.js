@@ -9,7 +9,8 @@ export const Table = styled.table`
   border-collapse: collapse;
   font-size: 0.75rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  thead th {
+  thead tr {
+    display:inline;
     font-size: 1rem;
     text-align: left;
   }

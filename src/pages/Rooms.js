@@ -2,11 +2,16 @@ import { TopBar, Container } from "../components/style-component";
 import { Table, StatusBadge } from "../components/TableStyleComponent";
 import { useSelector } from "react-redux";
 import { roomList } from "../features/rooms/roomsSlice";
-
+import { Pagination } from "../components/Pagination";
+import { useState } from "react";
+import { splitForPagination } from "../services/pagination";
 
 export const Rooms = () => {
+  const [page, setPage] = useState(0);
   const rooms = useSelector(roomList);
+  const roomsPages = splitForPagination(rooms);
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
+  const handleChangePage = (number) => setPage(number);
   return (<>
     <TopBar>
       <h1>Rooms</h1>
@@ -14,10 +19,10 @@ export const Rooms = () => {
     <Container>
       <Table>
         <thead>
-          {dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}
+          {dataToDisplay.map((header, index) => <tr key={index}><th >{header}</th></tr>)}
         </thead>
         <tbody>
-          {rooms.map(room => {
+          {roomsPages[page].map(room => {
             // console.log(room);
             return (
               <tr key={room.id} >
@@ -33,5 +38,6 @@ export const Rooms = () => {
         </tbody>
       </Table>
     </Container>
+    <Pagination pages={roomsPages} onClick={handleChangePage} actualPage={page} />
   </>);
 };
