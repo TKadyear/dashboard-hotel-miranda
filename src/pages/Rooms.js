@@ -1,35 +1,39 @@
 import { TopBar, Container } from "../components/style-component";
 import { Table, StatusBadge, TRowDnd } from "../components/TableStyleComponent";
 import { useSelector } from "react-redux";
-import { roomList } from "../features/rooms/roomsSlice";
+import { roomList, reestructureList } from "../features/rooms/roomsSlice";
 import { Pagination } from "../components/Pagination";
 import { useCallback, useState } from "react";
 import { splitForPagination } from "../services/pagination";
 import { Page } from "../components/PageContainer";
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import update from "immutability-helper";
+import { useDispatch } from "react-redux";
 
 const ItemType = "room";
 
 export const Rooms = () => {
+  const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const rooms = useSelector(roomList);
-  const [room, setRoom] = useState(rooms);
-  const roomsPages = splitForPagination(room);
+  // const [room, setRoom] = useState(rooms);
+  const roomsPages = splitForPagination(rooms);
 
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
 
   const handleChangePage = (number) => setPage(number);
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    setRoom((prevCards) =>
-      update(prevCards, {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, prevCards[dragIndex]],
-        ],
-      }),
-    );
+    // IMPROVE Only dispatch the room when the drag is over
+    // BUG In the second page is not working the DnD
+    dispatch(reestructureList({ dragIndex: dragIndex, hoverIndex: hoverIndex }));
+    // setRoom((prevCards) =>
+    //   update(prevCards, {
+    //     $splice: [
+    //       [dragIndex, 1],
+    //       [hoverIndex, 0, prevCards[dragIndex]],
+    //     ],
+    //   }),
+    // );
   }, []);
   const renderRoom = useCallback((room, index) => <TableRow key={room.id} index={index} room={room} moveCard={moveCard} />);
   return (<Page>
