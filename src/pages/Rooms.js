@@ -23,7 +23,7 @@ export const Rooms = () => {
 
   const handleChangePage = (number) => setPage(number);
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    // IMPROVE Only dispatch the room when the drag is over
+    // IMPROVE Only call dispatch the room when the drag is over
     // BUG In the second page is not working the DnD
     dispatch(reestructureList({ dragIndex: dragIndex, hoverIndex: hoverIndex }));
     // setRoom((prevCards) =>
