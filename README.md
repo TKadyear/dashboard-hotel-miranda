@@ -44,6 +44,9 @@ $ npm run build
 
 ## Useful Resources
 - Generate fake data base : [Mockaroo](https://mockaroo.com/)
-
+- Generate fake data base : [MockTurtle](https://mockturtle.net/)
+- Private Route : [Private Route in React Router v6](https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5)
+- Convert a string into hexString: [SubtleCryto/digest](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest)
+- Styled Components to components from a library : [Medium-Style Active states of links in style components](https://medium.com/@mariokandut/style-active-state-of-links-in-styled-components-f747dcf2cc2c)
 ## Author
 - Github - [Tamara Kadyear | TKadyear](https://github.com/TKadyear)
