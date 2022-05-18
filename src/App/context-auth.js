@@ -6,11 +6,12 @@ export const AuthUpdateContext = React.createContext();
 const nameKey = "auth";
 const nameLogin = "login";
 const initialStateUser = () => JSON.parse(localStorage.getItem(nameLogin));
-const initialStateAuth = () => sessionStorage.getItem(nameKey) != null || initialStateUser() != null;
+const checkUser = (obj) => Object.keys(obj).length != 0;
 
 export function AuthProvider({ children }) {
-  const [auth, setAuth] = useState(initialStateAuth());
   const [user, setUser] = useState(initialStateUser() || {});
+  const initialStateAuth = () => (sessionStorage.getItem(nameKey) != null && checkUser(user)) || initialStateUser() != null;
+  const [auth, setAuth] = useState(initialStateAuth());
   const toggleAuth = (value, user) => {
     if (value) {
       setUser(user);

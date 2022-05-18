@@ -1,9 +1,12 @@
 describe('Test the login ', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit('login')
     cy.clearLocalStorage();
   })
-
+  it('Try to access to a private route,and the relocation to login when the user is not authenticated', () => {
+    cy.visit('/rooms')
+    cy.location().should((loc) => expect(loc.pathname).to.eq('/dashboard-hotel-miranda/login'))
+  });
   it('Text in the Sign In', () => {
     cy.contains('h1', 'Log in to your account');
   });
