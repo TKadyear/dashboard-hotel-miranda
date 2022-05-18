@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, ContainerCard, Input } from "../components/base/style-component";
+import { Button, ContainerCard, Input } from "../components/style-component";
 import { useAuth, useAuthUpdate } from "../App/context-auth";
 import { allUsers } from "../features/users/usersSlice";
-import { validationUser } from "../services/validation-db";
+import { findUser, validationUser } from "../services/validation-db";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -32,14 +32,16 @@ export const Login = () => {
     e.preventDefault();
     const login = { user: user, password: password };
     const isValid = validationUser(dataUsers, login);
-    setAuth(isValid);
     if (isValid) {
-      navigate("/", { replace: true });
+      const employee = findUser(dataUsers, login.user);
+      setAuth(isValid, employee);
+      return navigate("/", { replace: true });
     }
+    setAuth(isValid);
   };
   return (
     <Container>
-      <ContainerCard image="grey">
+      <ContainerCard img="./img/LogoHotel.svg">
         <h1>Log in to your account</h1>
         <label>
           Email Address

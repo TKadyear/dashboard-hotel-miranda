@@ -1,45 +1,44 @@
-import { TopBar } from "../components/base/style-component";
-import styled from "styled-components";
+import { TopBar, Container } from "../components/style-component";
+import { Table, StatusBadge } from "../components/TableStyleComponent";
 import { useSelector } from "react-redux";
 import { roomList } from "../features/rooms/roomsSlice";
-const Table = styled.table`
-  background-color: white;
-  border-radius: 12px;
-  padding:1rem;
-`;
-const StatusBadge = styled.div`
-  color: white;
-  text-align: center;
-  background-color: ${props => props.status ? "#5ad07a" : "#e23428"};
-  padding: 0.75rem;
-  border-radius: 12px;
-`;
+import { Pagination } from "../components/Pagination";
+import { useState } from "react";
+import { splitForPagination } from "../services/pagination";
+import { Page } from "../components/PageContainer";
+
 export const Rooms = () => {
+  const [page, setPage] = useState(0);
   const rooms = useSelector(roomList);
+  const roomsPages = splitForPagination(rooms);
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
-  return (<>
+  const handleChangePage = (number) => setPage(number);
+  return (<Page>
     <TopBar>
       <h1>Rooms</h1>
     </TopBar>
-    <Table>
-      <thead>
-        {dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}
-      </thead>
-      <tbody>
-        {rooms.map(room => {
-          console.log(room);
-          return (
-            <tr key={room.id} >
-              <td>{room.id}</td>
-              <td>{room.info.bedType}</td>
-              <td>{room.info.number}</td>
-              <td>{room.info.facilities}</td>
-              <td>{room.rate}</td>
-              <td><StatusBadge status={room.available}>{room.available ? "Available" : "Booked"}</StatusBadge></td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
-  </>);
+    <Container>
+      <Table>
+        <thead>
+          {dataToDisplay.map((header, index) => <tr key={index}><th >{header}</th></tr>)}
+        </thead>
+        <tbody>
+          {roomsPages[page].map(room => {
+            // console.log(room);
+            return (
+              <tr key={room.id} >
+                <td>{room.id}</td>
+                <td>{room.info.bedType}</td>
+                <td>{room.info.number}</td>
+                <td>{room.info.facilities}</td>
+                <td>{room.rate}</td>
+                <td><StatusBadge status={room.available}>{room.available ? "Available" : "Booked"}</StatusBadge></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    </Container>
+    <Pagination pages={roomsPages} onClick={handleChangePage} actualPage={page} />
+  </Page>);
 };

@@ -1,47 +1,49 @@
-import { TopBar } from "../components/base/style-component";
+import { TopBar, Container } from "../components/style-component";
 import { useSelector } from "react-redux";
 import { bookingsList } from "../features/bookings/bookingsSlice";
-import styled from "styled-components";
-const Table = styled.table`
-  background-color: white;
-  border-radius: 12px;
-  padding:1rem;
-`;
-const StatusBadge = styled.div`
-  color: white;
-  text-align: center;
-  background-color: ${props => props.status ? "#e23428" : "#5ad07a"};
-  padding: 0.75rem;
-  border-radius: 12px;
-`;
+import { Table, StatusBadge } from "../components/TableStyleComponent";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Pagination } from "../components/Pagination";
+import { Page } from "../components/PageContainer";
+
 export const Bookings = () => {
+  const [page, setPage] = useState(0);
   const rooms = useSelector(bookingsList);
   const dataToDisplay = ["Guest", "Order Date", "Check in", "Check out", "Special Request", "Status"];
+  const navigate = useNavigate();
+  const handleClick = (id) => {
+    navigate(id);
+  };
 
-  return (<>
-    <TopBar>
-      <h1>Bookings</h1>
-    </TopBar>
-    <Table>
-      <thead>
-        {dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}
-      </thead>
-      <tbody>
-        {rooms.map(room => {
-          console.log(room);
-          return (
-            <tr key={room.id} >
-              <td>{room.guest}</td>
-              <td>{room.order_date}</td>
-              <td>{room.booking.check_in}</td>
-              <td>{room.booking.check_in}</td>
-              <td>View Notes</td>
-              <td>{room.status}</td>
-              <td><StatusBadge status={room.available}>{room.available ? "Available" : "Booked"}</StatusBadge></td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
-  </>);
+  const handleChangePage = (number) => setPage(number);
+  return (
+    <Page>
+      <TopBar>
+        <h1>Bookings</h1>
+      </TopBar>
+      <Container>
+
+        <Table>
+          <thead>
+            <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
+          </thead>
+          <tbody>
+            {rooms[page].map(room => {
+              return (<TableRow key={room.id} room={room} onClick={handleClick} />);
+            })}
+          </tbody>
+        </Table>
+      </Container>
+      <Pagination pages={rooms} onClick={handleChangePage} actualPage={page} />
+    </Page>);
 };
+const TableRow = ({ room, onClick }) => (<tr onClick={() => onClick(room.id)}>
+  <td>{room.guest}</td>
+  <td>{room.order_date}</td>
+  <td>{room.booking.check_in}</td>
+  <td>{room.booking.check_in}</td>
+  <td>View Notes</td>
+  <td>{room.status}</td>
+  <td><StatusBadge status={room.available}>{room.available ? "Available" : "Booked"}</StatusBadge></td>
+</tr>);

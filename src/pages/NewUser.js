@@ -1,12 +1,13 @@
 import { TopBar } from "../components/style-component";
 import { Page } from "../components/PageContainer";
 
-export const Home = () => {
+export const NewUser = () => {
   return (
     <Page>
       <TopBar>
-        <h1>Home</h1>
+        New User
       </TopBar>
     </Page>
-  );
+  )
+    ;
 };

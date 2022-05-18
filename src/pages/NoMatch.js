@@ -1,3 +1,8 @@
+import { Page } from "../components/PageContainer";
 export const NoMatch = () => {
-  return (<h1>404 not Found</h1>);
+  return (
+    <Page>
+      <h1>404 not Found</h1>
+    </Page>
+  );
 };
