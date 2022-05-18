@@ -9,7 +9,6 @@ export const SideBar = styled.div`
   width: ${props => props.open ? "300px" : "70px"};
   padding: 1rem 0;
   background-color: white;
-  display: ${props => props.auth ? "block" : "none"};
   transition: 0.1s;
   box-shadow: ${props => props.theme.boxShadow.dirX};
   img {

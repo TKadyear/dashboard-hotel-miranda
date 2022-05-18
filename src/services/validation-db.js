@@ -2,7 +2,7 @@ import { sha256 } from "js-sha256";
 
 export const findUser = (data, userMail) => {
   const infoUser = [...data].find(employee => employee.personal_info.email === userMail);
-  console.log(userMail, infoUser);
+  // console.log(userMail, infoUser);
   return infoUser ? infoUser : null;
 };
 const validationPassword = (user, { password }) => {
