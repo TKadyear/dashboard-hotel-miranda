@@ -5,7 +5,7 @@ export const findUser = (data, userMail) => {
   // console.log(userMail, infoUser);
   return infoUser ? infoUser : null;
 };
-const validationPassword = (user, { password }) => {
+export const validationPassword = (user, { password }) => {
   // console.log(user.personal_info.firstName, user.personal_info.password)
   const hashPassword = sha256(password);
   return user.personal_info.password === hashPassword;

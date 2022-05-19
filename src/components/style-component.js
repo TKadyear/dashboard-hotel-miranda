@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { HiMenuAlt2 } from "react-icons/hi";
 export const Button = styled.button`
-  background: #135846;
+  background: ${props => props.bg || "#135846"};
   padding: 0.75rem 0.5rem;
   border:0;
   border-radius: 0.5rem;
