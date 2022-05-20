@@ -16,17 +16,7 @@ export const Rooms = () => {
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    // IMPROVE Only call dispatch the room when the drag is over
-    // BUG In the second page is not working the DnD
     dispatch(reestructureList({ dragIndex: dragIndex, hoverIndex: hoverIndex }));
-    // setRoom((prevCards) =>
-    //   update(prevCards, {
-    //     $splice: [
-    //       [dragIndex, 1],
-    //       [hoverIndex, 0, prevCards[dragIndex]],
-    //     ],
-    //   }),
-    // );
   }, []);
   const renderRoom = useCallback((room, index) => <TableRow key={room.id} index={index} room={room} moveCard={moveCard} />);
   return (<Page>
@@ -103,7 +93,6 @@ const TableRow = ({ room, moveCard, index }) => {
       isDragging: monitor.isDragging(),
     }),
   });
-  // const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
   return (
     <TRowDnd ref={ref} isDragging={isDragging} data-handler-id={handlerId}>
