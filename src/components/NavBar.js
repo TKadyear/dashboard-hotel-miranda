@@ -13,7 +13,7 @@ export const NavBar = (props) => {
   if (auth) {
     return (
       <SideBar open={open} >
-        <Logo onClick={handleClick}>
+        <Logo pL="1rem" onClick={handleClick}>
           <img src="./img/LogoHotel.svg" alt="logo hotel" />
           <Title open={open}>travl</Title>
           <Subtitle open={open} >Hotel Admin Dashboard</Subtitle>

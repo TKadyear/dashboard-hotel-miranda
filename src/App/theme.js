@@ -4,6 +4,7 @@ const theme = {
     primaryLight: "#ebf1ef",
     colorIconsNavBar: "#8a9f92",
     secondaryRed: "#e23428",
+    secondary20: "#e2342820",
     green: "#5ad07a",
     background: "#f8f8f8",
     inactiveTabs: "#767676",

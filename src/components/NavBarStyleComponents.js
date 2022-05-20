@@ -78,12 +78,12 @@ export const Subtitle = styled.p`
   color: ${props => props.theme.colors.inactiveTabs};
 `;
 export const Logo = styled.div`
-  padding-left: 1rem;
+  padding-left: ${props => props.pL ? props.pL : 0};
   cursor:pointer;
   display:grid;
   column-gap: 1rem;
   grid-template-columns: 40px 1fr;
-
+  align-items: center;
 `;
 export const ContactCard = styled(ContainerCard)`
   display: ${props => props.open ? "grid" : "none"};
