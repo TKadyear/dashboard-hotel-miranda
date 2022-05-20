@@ -2,9 +2,7 @@ import { TopBar, Container } from "../components/style-component";
 import { Table, StatusBadge, TRowDnd } from "../components/TableStyleComponent";
 import { useSelector } from "react-redux";
 import { roomList, reestructureList } from "../features/rooms/roomsSlice";
-import { Pagination } from "../components/Pagination";
-import { useCallback, useState } from "react";
-import { splitForPagination } from "../services/pagination";
+import { useCallback } from "react";
 import { Page } from "../components/PageContainer";
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
@@ -14,14 +12,9 @@ const ItemType = "room";
 
 export const Rooms = () => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(0);
   const rooms = useSelector(roomList);
-  // const [room, setRoom] = useState(rooms);
-  const roomsPages = splitForPagination(rooms);
-
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
 
-  const handleChangePage = (number) => setPage(number);
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     // IMPROVE Only call dispatch the room when the drag is over
     // BUG In the second page is not working the DnD
@@ -46,11 +39,10 @@ export const Rooms = () => {
           {dataToDisplay.map((header, index) => <tr key={index}><th >{header}</th></tr>)}
         </thead>
         <tbody>
-          {roomsPages[page].map((room, index) => renderRoom(room, index))}
+          {rooms.map((room, index) => renderRoom(room, index))}
         </tbody>
       </Table>
     </Container>
-    <Pagination pages={roomsPages} onClick={handleChangePage} actualPage={page} />
   </Page>);
 };
 const TableRow = ({ room, moveCard, index }) => {
