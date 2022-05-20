@@ -31,10 +31,15 @@ export const Table = styled.table`
 
 }
 `;
+export const TRowDnd = styled.tr`
+  cursor: move;
+  opacity: ${({ isDragging }) => isDragging ? 0 : 1};
+  /* display: ${({ isDragging }) => isDragging ? "none" : "block"}; */
+`;
 export const StatusBadge = styled.div`
-  color: white;
-  text-align: center;
-  background-color: ${props => props.status ? "#5ad07a" : "#e23428"};
-  padding: 0.75rem;
-  border-radius: 12px;
+color: white;
+text - align: center;
+background - color: ${props => props.status ? "#5ad07a" : "#e23428"};
+padding: 0.75rem;
+border - radius: 12px;
 `;
