@@ -50,5 +50,6 @@ $ npm run build
 - Styled Components to components from a library : [Medium-Style Active states of links in style components](https://medium.com/@mariokandut/style-active-state-of-links-in-styled-components-f747dcf2cc2c)
 - Cypress, how to start testing an app starting with the login: [Brian Mann - I see yoour point, but...](https://www.youtube.com/watch?v=5XQOK0v_YRE)
 - Full Calendar: [CSS Customization](https://fullcalendar.io/docs/css-customization)
+- [[Question] How to use FullCalendar with style-components](https://github.com/fullcalendar/fullcalendar-react/issues/100)
 ## Author
 - Github - [Tamara Kadyear | TKadyear](https://github.com/TKadyear)

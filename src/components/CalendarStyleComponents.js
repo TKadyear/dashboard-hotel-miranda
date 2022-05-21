@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const FullCalendarWrapper = styled.div`
-  border-radius: 12px;
-  margin: 2.25rem 0;
-  width: 45%;
+  grid-column: 1/3;
+  border-radius: 8px;
+  width: 100%;
   padding: 2rem 2rem;
   background: ${props => props.theme.colors.white};
   font-family: ${props => props.theme.font};
@@ -29,7 +29,7 @@ export const FullCalendarWrapper = styled.div`
     }
   }
 
-  .fc-toolbar-title, .fc .fc-toolbar-chunk:first-child:before{
+  h2.fc-toolbar-title, .fc .fc-toolbar-chunk:first-child:before{
     font-weight: 500;
     font-size: 1.125rem;
   }
@@ -41,13 +41,11 @@ export const FullCalendarWrapper = styled.div`
   .fc .fc-button-primary{
     background-color: ${props => props.theme.colors.white};
     border: 0;
-    border-radius: 50%;
+    border-radius: 4px;
     color: ${props => props.theme.colors.light};
     transition: 0.2s;
-    :hover{
+    :hover, :active{
       box-shadow:${props => props.theme.boxShadow.md} ;
-    }
-    :active{
       background-color: ${props => props.theme.colors.light};
       color: ${props => props.theme.colors.active};
     }

@@ -5,11 +5,13 @@ import { Logo } from "../components/NavBarStyleComponents";
 import { IoBedOutline, IoTodayOutline, IoEnterOutline } from "react-icons/io5";
 import { CalendarBookedRooms } from "../components/Calendar";
 const Box = styled.div`
-width: 275px;
-padding: 1rem;
-border-radius: 8px;
-background:${props => props.bg ? props.bg : props.theme.colors.white};
-box-shadow: ${props => props.boxShadow ? props.theme.boxShadow.dirY : ""};
+  padding: 1.5rem;
+  border-radius: 8px;
+  background:${props => props.bg ? props.bg : props.theme.colors.white};
+  box-shadow: ${props => props.boxShadow ? props.theme.boxShadow.dirY : ""};
+  p{
+    margin:0;
+  }
 `;
 const SvgBox = styled(Box)`
   position:relative;
@@ -33,15 +35,14 @@ const SvgBox = styled(Box)`
     transform: translateX(-50%) translateY(-50%) rotate(0.5turn);
   }
 `;
-const ContainerFlex = styled.div`
-  display:flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  gap: 1.25rem;
-  `;
 const Container = styled.main`
   width: 90% ;
+  display: grid;
+  grid-template-columns: repeat( 4, 1fr );
+  grid-template-rows: 96px 1fr repeat( 2, 0.75fr );
+  gap: 2.25rem;
   margin: auto;
+  margin-bottom: 3rem;
 `;
 export const Home = () => {
   return (
@@ -50,49 +51,50 @@ export const Home = () => {
         <h1>Home</h1>
       </TopBar>
       <Container>
-        <ContainerFlex>
-          <Box boxShadow={true}>
-            <Logo>
-              <SvgBox color="#e23428">
-                <IoBedOutline />
-              </SvgBox>
+        <Box boxShadow={true}>
+          <Logo>
+            <SvgBox color="#e23428">
+              <IoBedOutline />
+            </SvgBox>
 
-              <p><strong>8,461</strong><br />New Booking</p>
-            </Logo>
-          </Box>
-          <Box boxShadow={true}>
-            <Logo>
-              <SvgBox bg="#e23428">
-                <IoTodayOutline />
-              </SvgBox>
+            <p><strong>8,461</strong><br />New Booking</p>
+          </Logo>
+        </Box>
+        <Box boxShadow={true}>
+          <Logo>
+            <SvgBox bg="#e23428">
+              <IoTodayOutline />
+            </SvgBox>
 
-              <p><strong>963</strong><br />Scheduled Room</p>
+            <p><strong>963</strong><br />Scheduled Room</p>
 
-            </Logo>
-          </Box>
-          <Box boxShadow={true}>
-            <Logo>
-              <SvgBox color="#e23428">
-                <IoEnterOutline
-                />
-              </SvgBox>
+          </Logo>
+        </Box>
+        <Box boxShadow={true}>
+          <Logo>
+            <SvgBox color="#e23428">
+              <IoEnterOutline
+              />
+            </SvgBox>
 
-              <p><strong>753</strong><br />Check In</p>
+            <p><strong>753</strong><br />Check In</p>
 
-            </Logo>
-          </Box>
-          <Box boxShadow={true}>
-            <Logo>
-              <SvgBox color="#e23428">
-                <IoEnterOutline className="icon-reverse"
-                />
-              </SvgBox>
+          </Logo>
+        </Box>
+        <Box boxShadow={true}>
+          <Logo>
+            <SvgBox color="#e23428">
+              <IoEnterOutline className="icon-reverse"
+              />
+            </SvgBox>
 
-              <p><strong>516</strong><br />Checkout</p>
-            </Logo>
-          </Box>
-        </ContainerFlex>
+            <p><strong>516</strong><br />Checkout</p>
+          </Logo>
+        </Box>
         <CalendarBookedRooms />
+        <Box boxShadow={true} style={{ gridColumn: "3/5" }} />
+        <Box boxShadow={true} style={{ gridColumn: "1/5" }} />
+        <Box boxShadow={true} style={{ gridColumn: "1/5" }} />
       </Container>
     </Page>
   );
