@@ -3,7 +3,7 @@ import { Page } from "../components/PageContainer";
 import styled from "styled-components";
 import { Logo } from "../components/NavBarStyleComponents";
 import { IoBedOutline, IoTodayOutline, IoEnterOutline } from "react-icons/io5";
-
+import { CalendarBookedRooms } from "../components/Calendar";
 const Box = styled.div`
 width: 275px;
 padding: 1rem;
@@ -92,6 +92,7 @@ export const Home = () => {
             </Logo>
           </Box>
         </ContainerFlex>
+        <CalendarBookedRooms />
       </Container>
     </Page>
   );
