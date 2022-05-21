@@ -76,4 +76,9 @@ export const FullCalendarWrapper = styled.div`
     /*Because Full Calendar was applying the style = >overflow in the html markup */
     overflow: hidden!important;
   }
+  .fc .fc-daygrid-day.fc-day-today{
+    /* Removed the yellow bg */
+    background-color: inherit;
+    font-weight: bold;
+  }
 `;
