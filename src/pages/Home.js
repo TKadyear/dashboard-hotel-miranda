@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Logo } from "../components/NavBarStyleComponents";
 import { IoBedOutline, IoTodayOutline, IoEnterOutline } from "react-icons/io5";
 import { CalendarBookedRooms } from "../components/Calendar";
+import { Spinner } from "../components/style-component";
 const Box = styled.div`
   padding: 1.5rem;
   border-radius: 8px;
@@ -92,7 +93,9 @@ export const Home = () => {
           </Logo>
         </Box>
         <CalendarBookedRooms />
-        <Box boxShadow={true} style={{ gridColumn: "3/5" }} />
+        <Box boxShadow={true} style={{ gridColumn: "3/5" }} >
+          <Spinner></Spinner>
+        </Box>
         <Box boxShadow={true} style={{ gridColumn: "1/5" }} />
         <Box boxShadow={true} style={{ gridColumn: "1/5" }} />
       </Container>

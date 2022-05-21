@@ -43,3 +43,24 @@ export const Container = styled.div`
   padding: 2.75rem 2.5rem;
 `;
 
+export const Spinner = styled.div`
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+  position:relative;
+  top: 45%;
+  left: 45%;
+  width: 4rem;
+  height: 4rem;
+  border: 0.5rem solid transparent;
+  border-left-color:${props => props.theme.colors.primary};
+  padding: 1rem;
+  border-radius: 50%;
+  animation: spin 800ms linear infinite;
+`;
