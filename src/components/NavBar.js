@@ -1,14 +1,28 @@
 import { useAuth, useEmployee } from "../App/context-auth";
 import { useLocation } from "react-router-dom";
-import { Section, SideBar, Logo, Link, ContactCard, Title, Subtitle, BtnContact, InfoFooter } from "./NavBarStyleComponents";
-import { useContext } from "react";
-import { MenuOpenContext } from "../App";
+import { Section, SideBar, Logo, Link, ContactCard, Title, Subtitle, BtnContact, InfoFooter, Bar } from "./NavBarStyleComponents";
+// import { HiMenuAlt2 } from "react-icons/hi";
+import { IoClose, IoMenuOutline } from "react-icons/io5";
+import { useOpen, useToggleOpen } from "../App/context-open";
 
+export const TopBar = (props) => {
+  const open = useOpen();
+  const toggleOpen = useToggleOpen();
+  return (
+    <Bar open={open}>
+      {open
+        ? <IoClose size="1.5rem" style={{ cursor: "pointer" }} onClick={toggleOpen} />
+        : <IoMenuOutline size="1.5rem" style={{ cursor: "pointer" }} onClick={toggleOpen} />
+      }
+      {props.children}
+    </Bar>
+  );
+};
 export const NavBar = (props) => {
-  const open = useContext(MenuOpenContext);
+  const open = useOpen();
+  const handleClick = useToggleOpen();
   const auth = useAuth();
   const employee = useEmployee();
-  const handleClick = () => props.setOpen(prev => !prev);
   const { pathname } = useLocation();
   if (auth) {
     return (
@@ -19,7 +33,7 @@ export const NavBar = (props) => {
           <Subtitle open={open} >Hotel Admin Dashboard</Subtitle>
         </Logo>
         {props.links.map(route => (
-          <Section key={route.name} onClick={handleClick} active={pathname === route.path}>
+          <Section key={route.name} open={open} onClick={handleClick} active={pathname === route.path}>
             {route.icon}
             <Link
               open={open}

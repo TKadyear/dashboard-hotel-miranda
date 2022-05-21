@@ -1,4 +1,4 @@
-import { TopBar } from "../components/style-component";
+import { TopBar } from "../components/NavBar";
 import { Page } from "../components/PageContainer";
 
 export const NewUser = () => {

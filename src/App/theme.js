@@ -25,10 +25,20 @@ const theme = {
     dirX: "4px 0 24px #58565617"
   },
   breakpoint: {
-    sm: "(min-width: 320px)",
-    md: "(min-width: 768px)",
-    lg: "(min-width: 1024px)",
-    xl: "(min-width: 1280px)",
+    up: {
+      xs: "(min-width: 320px)",
+      sm: "(min-width: 475px)",
+      md: "(min-width: 768px)",
+      lg: "(min-width: 1024px)",
+      xl: "(min-width: 1280px)",
+    },
+    down: {
+      xs: "(max-width: 320px)",
+      sm: "(max-width: 475px)",
+      md: "(max-width: 768px)",
+      lg: "(max-width: 1024px)",
+      xl: "(max-width: 1280px)",
+    }
   }
 };
 // const darkTheme = {

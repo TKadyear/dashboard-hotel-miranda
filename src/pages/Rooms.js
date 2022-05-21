@@ -1,4 +1,5 @@
-import { TopBar, Container } from "../components/style-component";
+import { Container } from "../components/style-component";
+import { TopBar } from "../components/NavBar";
 import { Table, StatusBadge, TRowDnd } from "../components/TableStyleComponent";
 import { useSelector } from "react-redux";
 import { roomList, reestructureList } from "../features/rooms/roomsSlice";
@@ -7,9 +8,11 @@ import { Page } from "../components/PageContainer";
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { useDispatch } from "react-redux";
-
+// import styled from "styled-components";
 const ItemType = "room";
+// const Tabs = styled.div`
 
+// `
 export const Rooms = () => {
   const dispatch = useDispatch();
   const rooms = useSelector(roomList);

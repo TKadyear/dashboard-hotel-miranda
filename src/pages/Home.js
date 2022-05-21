@@ -1,4 +1,4 @@
-import { TopBar } from "../components/style-component";
+import { TopBar } from "../components/NavBar";
 import { Page } from "../components/PageContainer";
 import styled from "styled-components";
 import { Logo } from "../components/NavBarStyleComponents";

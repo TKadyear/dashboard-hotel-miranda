@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { HiMenuAlt2 } from "react-icons/hi";
 export const Button = styled.button`
   background: ${props => props.bg || "#135846"};
   padding: 0.75rem 0.5rem;
@@ -43,15 +42,4 @@ export const Input = styled.input`
 export const Container = styled.div`
   padding: 2.75rem 2.5rem;
 `;
-export const Bar = styled.div`
-  height: 75px;
-  padding: 1rem 1.5rem;
-  margin-bottom: 2.75rem;
-  background-color: white;
-  box-shadow: ${props => props.theme.boxShadow.dirY};
-  h1{
-    display:inline;
-    margin-left: 1rem;
-  }
-`;
-export const TopBar = (props) => (<Bar><HiMenuAlt2 size="1.5rem" />{props.children}</Bar>);
+
