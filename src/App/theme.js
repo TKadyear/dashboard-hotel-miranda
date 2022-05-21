@@ -22,6 +22,7 @@ const theme = {
   },
   boxShadow: {
     dirY: "0 4px 8px #58565617",
+    md: "0 4px 8px #58565675",
     dirX: "4px 0 24px #58565617"
   },
   breakpoint: {
