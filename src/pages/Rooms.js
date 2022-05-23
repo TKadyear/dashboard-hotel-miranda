@@ -6,8 +6,9 @@ import { roomList, reestructureList } from "../features/rooms/roomsSlice";
 import { useCallback } from "react";
 import { Page } from "../components/PageContainer";
 import { useRef } from "react";
-import { useDrag, useDrop } from "react-dnd";
+import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { useDispatch } from "react-redux";
+import { HTML5Backend } from "react-dnd-html5-backend";
 // import styled from "styled-components";
 const ItemType = "room";
 // const Tabs = styled.div`
@@ -22,21 +23,25 @@ export const Rooms = () => {
     dispatch(reestructureList({ dragIndex: dragIndex, hoverIndex: hoverIndex }));
   }, []);
   const renderRoom = useCallback((room, index) => <TableRow key={room.id} index={index} room={room} moveCard={moveCard} />);
-  return (<Page>
-    <TopBar>
-      <h1>Rooms</h1>
-    </TopBar>
-    <Container>
-      <Table>
-        <thead>
-          {dataToDisplay.map((header, index) => <tr key={index}><th >{header}</th></tr>)}
-        </thead>
-        <tbody>
-          {rooms.map((room, index) => renderRoom(room, index))}
-        </tbody>
-      </Table>
-    </Container>
-  </Page>);
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <Page>
+        <TopBar>
+          <h1>Rooms</h1>
+        </TopBar>
+        <Container>
+          <Table>
+            <thead>
+              {dataToDisplay.map((header, index) => <tr key={index}><th >{header}</th></tr>)}
+            </thead>
+            <tbody>
+              {rooms.map((room, index) => renderRoom(room, index))}
+            </tbody>
+          </Table>
+        </Container>
+      </Page>
+    </DndProvider>
+  );
 };
 const TableRow = ({ room, moveCard, index }) => {
   const ref = useRef(null);
