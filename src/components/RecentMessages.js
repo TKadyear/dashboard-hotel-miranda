@@ -1,6 +1,6 @@
 import { allContact } from "../features/contact/contactSlice";
 import { useSelector } from "react-redux";
-import { Box } from "./style-component";
+import { Box, IconButton } from "./style-component";
 import { useEffect, useState } from "react";
 import { splitForPagination } from "../services/pagination";
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
@@ -17,9 +17,10 @@ export const RecentMessages = () => {
   const handleNextPage = () => {
     setPage(prevPage => prevPage + 1 < recentMessages.length ? prevPage + 1 : prevPage);
   };
+  //IMPROVE Maybe It's better pass a conditional to the icons and make visibility hidden;
   return (
     <>
-      {page != 0 && <IoArrowBack onClick={handlePreviousPage} />}
+      <IconButton ><IoArrowBack onClick={handlePreviousPage} /></IconButton>
       {recentMessages[page].length && recentMessages[page].map(message => (
         <Box width="30%" height="250px" key={message.id}>
           <h3>{message.review.title}</h3>
@@ -27,7 +28,7 @@ export const RecentMessages = () => {
           <p>{message.review.date}</p>
         </Box>
       ))}
-      {page != recentMessages.length - 1 && < IoArrowForward onClick={handleNextPage} />}
+      <IconButton > < IoArrowForward onClick={handleNextPage} /></IconButton>
     </>
   );
 };

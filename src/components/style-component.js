@@ -81,6 +81,9 @@ export const Box = styled.div`
 `;
 export const SvgBox = styled(Box)`
   position:relative;
+  /* IMPROVE Make this
+  color: ${props => props.color ? props.theme.colors[props.color] : props.theme.colors.white};
+   */
   color: ${props => props.color ? props.color : props.theme.colors.white};
   font-size: 1.5rem;
   text-align: center;
@@ -106,4 +109,27 @@ export const BoxFlexRow = styled(Box)`
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
+`;
+export const IconButton = styled.button`
+  position:relative;
+  border: 0;
+  border: 2px solid ${props => props.bg ? props.theme.colors[props.bg] : props.theme.colors.primary};
+  color: ${props => props.color ? props.theme.colors[props.color] : props.theme.colors.white};
+  font-size: 1.5rem;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background:${props => props.bg ? props.theme.colors[props.bg] : props.theme.colors.primary};
+  transition: 300ms;
+  svg{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  :hover{
+    color:${props => props.bg ? props.theme.colors[props.bg] : props.theme.colors.primary};
+    background: ${props => props.color ? props.theme.colors[props.color] : props.theme.colors.white};
+  }
 `;
