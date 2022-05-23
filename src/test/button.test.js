@@ -12,8 +12,8 @@ describe("Testing the color of the btn", () => {
     const color = "#000000";
     const expectedStyle = "background: " + "#000000";
     // Act
-    const { getByText } = render(<Button bg={color}>Continue</Button>)
+    const { getByText } = render(<Button bg={color}>Continue</Button>);
     // Assert
     expect(getByText("Continue")).toHaveStyle(expectedStyle);
-  })
-})
+  });
+});

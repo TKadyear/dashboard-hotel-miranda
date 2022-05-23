@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { HiMenuAlt2 } from "react-icons/hi";
 export const Button = styled.button`
   background: ${props => props.bg || "#135846"};
   padding: 0.75rem 0.5rem;
@@ -43,15 +42,94 @@ export const Input = styled.input`
 export const Container = styled.div`
   padding: 2.75rem 2.5rem;
 `;
-export const Bar = styled.div`
-  height: 75px;
-  padding: 1rem 1.5rem;
-  margin-bottom: 2.75rem;
-  background-color: white;
-  box-shadow: ${props => props.theme.boxShadow.dirY};
-  h1{
-    display:inline;
-    margin-left: 1rem;
+
+export const Spinner = styled.div`
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+  position:relative;
+  top: 45%;
+  left: 45%;
+  width: 4rem;
+  height: 4rem;
+  border: 0.5rem solid transparent;
+  border-left-color:${props => props.theme.colors.primary};
+  padding: 1rem;
+  border-radius: 50%;
+  animation: spin 800ms linear infinite;
+`;
+export const Box = styled.div`
+  width:${props => props.width};
+  height:${props => props.height};
+  padding: 1.5rem;
+  border-radius: 8px;
+  background:${props => props.bg ? props.bg : props.theme.colors.white};
+  box-shadow: ${props => props.notBoxShadow ? "" : props.theme.boxShadow.dirY};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  p{
+    margin:0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
-export const TopBar = (props) => (<Bar><HiMenuAlt2 size="1.5rem" />{props.children}</Bar>);
+export const SvgBox = styled(Box)`
+  position:relative;
+  /* IMPROVE Make this
+  color: ${props => props.color ? props.theme.colors[props.color] : props.theme.colors.white};
+   */
+  color: ${props => props.color ? props.color : props.theme.colors.white};
+  font-size: 1.5rem;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background:${props => props.bg ? props.bg : props.theme.colors.secondary20};
+  svg{
+  position:absolute;
+  top:50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  }
+  path{
+    stroke-width: 42;
+  }
+  svg.icon-reverse{
+    transform: translateX(-50%) translateY(-50%) rotate(0.5turn);
+  }
+`;
+export const BoxFlexRow = styled(Box)`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+export const IconButton = styled.button`
+  position:relative;
+  border: 0;
+  border: 2px solid ${props => props.bg ? props.theme.colors[props.bg] : props.theme.colors.primary};
+  color: ${props => props.color ? props.theme.colors[props.color] : props.theme.colors.white};
+  font-size: 1.5rem;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background:${props => props.bg ? props.theme.colors[props.bg] : props.theme.colors.primary};
+  transition: 300ms;
+  svg{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  :hover{
+    color:${props => props.bg ? props.theme.colors[props.bg] : props.theme.colors.primary};
+    background: ${props => props.color ? props.theme.colors[props.color] : props.theme.colors.white};
+  }
+`;

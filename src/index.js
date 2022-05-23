@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./App/store";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./App/theme";
+import { MenuOpenProvider } from "./App/context-open";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
@@ -17,7 +18,9 @@ root.render(
       <ThemeProvider theme={theme}>
         <AuthProvider>
           <DndProvider backend={HTML5Backend}>
-            <App />
+            <MenuOpenProvider>
+              <App />
+            </MenuOpenProvider>
           </DndProvider>
         </AuthProvider>
       </ThemeProvider>
