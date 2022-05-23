@@ -12,7 +12,11 @@ export const contactSlice = createSlice({
 });
 
 
-export const allContact = state => state.contact;
+export const allContact = state => [...state.contact].sort((a, b) => {
+  const dateA = new Date(a.review.date);
+  const dateB = new Date(b.review.date);
+  return dateA.getTime() - dateB.getTime();
+});
 
 // export const { addPhoto, removePhoto, editDescription } = myPhotosSlice.actions;
 

@@ -4,43 +4,14 @@ import styled from "styled-components";
 import { Logo } from "../components/NavBarStyleComponents";
 import { IoBedOutline, IoTodayOutline, IoEnterOutline } from "react-icons/io5";
 import { CalendarBookedRooms } from "../components/Calendar";
-import { Spinner } from "../components/style-component";
-const Box = styled.div`
-  padding: 1.5rem;
-  border-radius: 8px;
-  background:${props => props.bg ? props.bg : props.theme.colors.white};
-  box-shadow: ${props => props.boxShadow ? props.theme.boxShadow.dirY : ""};
-  p{
-    margin:0;
-  }
-`;
-const SvgBox = styled(Box)`
-  position:relative;
-  color: ${props => props.color ? props.color : props.theme.colors.white};
-  font-size: 1.5rem;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
-  background:${props => props.bg ? props.bg : props.theme.colors.secondary20};
-  svg{
-  position:absolute;
-  top:50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  }
-  path{
-    stroke-width: 42;
-  }
-  svg.icon-reverse{
-    transform: translateX(-50%) translateY(-50%) rotate(0.5turn);
-  }
-`;
+import { Spinner, Box, SvgBox, BoxFlexRow } from "../components/style-component";
+import { RecentMessages } from "../components/RecentMessages";
+
 const Container = styled.main`
   width: 90% ;
   display: grid;
   grid-template-columns: repeat( 4, 1fr );
-  grid-template-rows: 96px 1fr repeat( 2, 0.75fr );
+  grid-template-rows: 96px auto-fit repeat( 2, 0.5fr );
   gap: 2.25rem;
   margin: auto;
   margin-bottom: 3rem;
@@ -52,7 +23,7 @@ export const Home = () => {
         <h1>Home</h1>
       </TopBar>
       <Container>
-        <Box boxShadow={true}>
+        <Box >
           <Logo>
             <SvgBox color="#e23428">
               <IoBedOutline />
@@ -61,7 +32,7 @@ export const Home = () => {
             <p><strong>8,461</strong><br />New Booking</p>
           </Logo>
         </Box>
-        <Box boxShadow={true}>
+        <Box >
           <Logo>
             <SvgBox bg="#e23428">
               <IoTodayOutline />
@@ -71,7 +42,7 @@ export const Home = () => {
 
           </Logo>
         </Box>
-        <Box boxShadow={true}>
+        <Box>
           <Logo>
             <SvgBox color="#e23428">
               <IoEnterOutline
@@ -82,7 +53,7 @@ export const Home = () => {
 
           </Logo>
         </Box>
-        <Box boxShadow={true}>
+        <Box>
           <Logo>
             <SvgBox color="#e23428">
               <IoEnterOutline className="icon-reverse"
@@ -93,11 +64,13 @@ export const Home = () => {
           </Logo>
         </Box>
         <CalendarBookedRooms />
-        <Box boxShadow={true} style={{ gridColumn: "3/5" }} >
+        <Box style={{ gridColumn: "3/5" }} >
           <Spinner></Spinner>
         </Box>
-        <Box boxShadow={true} style={{ gridColumn: "1/5" }} />
-        <Box boxShadow={true} style={{ gridColumn: "1/5" }} />
+        <Box style={{ gridColumn: "1/5" }} />
+        <BoxFlexRow style={{ gridColumn: "1/5" }}>
+          <RecentMessages />
+        </BoxFlexRow>
       </Container>
     </Page>
   );

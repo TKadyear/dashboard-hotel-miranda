@@ -64,3 +64,46 @@ export const Spinner = styled.div`
   border-radius: 50%;
   animation: spin 800ms linear infinite;
 `;
+export const Box = styled.div`
+  width:${props => props.width};
+  height:${props => props.height};
+  padding: 1.5rem;
+  border-radius: 8px;
+  background:${props => props.bg ? props.bg : props.theme.colors.white};
+  box-shadow: ${props => props.notBoxShadow ? "" : props.theme.boxShadow.dirY};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  p{
+    margin:0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`;
+export const SvgBox = styled(Box)`
+  position:relative;
+  color: ${props => props.color ? props.color : props.theme.colors.white};
+  font-size: 1.5rem;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background:${props => props.bg ? props.bg : props.theme.colors.secondary20};
+  svg{
+  position:absolute;
+  top:50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  }
+  path{
+    stroke-width: 42;
+  }
+  svg.icon-reverse{
+    transform: translateX(-50%) translateY(-50%) rotate(0.5turn);
+  }
+`;
+export const BoxFlexRow = styled(Box)`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+`;
