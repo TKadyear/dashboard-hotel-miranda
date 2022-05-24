@@ -8,8 +8,7 @@ import store from "./App/store";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./App/theme";
 import { MenuOpenProvider } from "./App/context-open";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,11 +16,9 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <AuthProvider>
-          <DndProvider backend={HTML5Backend}>
-            <MenuOpenProvider>
-              <App />
-            </MenuOpenProvider>
-          </DndProvider>
+          <MenuOpenProvider>
+            <App />
+          </MenuOpenProvider>
         </AuthProvider>
       </ThemeProvider>
     </Provider>

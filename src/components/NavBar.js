@@ -43,8 +43,8 @@ export const NavBar = (props) => {
         }
         <ContactCard open={open}>
           <p>
-            <strong>{`${employee.personal_info.firstName} ${employee.personal_info.surname}`}</strong><br />
-            {employee.personal_info.email}
+            <strong>{employee.name}</strong><br />
+            {employee.email}
           </p>
           <BtnContact>Edit Profile</BtnContact>
         </ContactCard>

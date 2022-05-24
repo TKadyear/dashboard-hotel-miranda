@@ -49,7 +49,8 @@ export const Login = () => {
     setInvalid(!isValid);
     if (isValid) {
       const employee = findUser(dataUsers, login.user);
-      setAuth(isValid, employee);
+      const authEmployee = { name: employee.personal_info.firstName + " " + employee.personal_info.surname, email: employee.personal_info.email };
+      setAuth(isValid, authEmployee);
       return navigate("/", { replace: true });
     }
     setAuth(isValid);

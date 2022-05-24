@@ -67,7 +67,7 @@ export const Home = () => {
         <Box style={{ gridColumn: "3/5" }} >
           <Spinner></Spinner>
         </Box>
-        <Box style={{ gridColumn: "1/5" }} />
+        {/* <Box style={{ gridColumn: "1/5" }} /> */}
         <BoxFlexRow style={{ gridColumn: "1/5" }}>
           <RecentMessages />
         </BoxFlexRow>
