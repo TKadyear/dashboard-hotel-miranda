@@ -24,7 +24,7 @@ export const Table = styled.table`
     border-bottom:0;
   }
   tbody tr:hover{
-    font-weight: 500;
+    /* font-weight: 500; */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
 }

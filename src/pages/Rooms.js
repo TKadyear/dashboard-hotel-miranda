@@ -2,25 +2,29 @@ import { Container } from "../components/style-component";
 import { TopBar } from "../components/NavBar";
 import { Table, StatusBadge, TRowDnd } from "../components/TableStyleComponent";
 import { useSelector } from "react-redux";
-import { roomList, reestructureList } from "../features/rooms/roomsSlice";
-import { useCallback } from "react";
+import { roomList } from "../features/rooms/roomsSlice";
 import { Page } from "../components/PageContainer";
-import { useRef } from "react";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
-import { useDispatch } from "react-redux";
 import { HTML5Backend } from "react-dnd-html5-backend";
-// import styled from "styled-components";
-const ItemType = "room";
-// const Tabs = styled.div`
+import { useState, useRef, useCallback } from "react";
+import update from "immutability-helper";
 
-// `
+const ItemType = "room";
+
 export const Rooms = () => {
-  const dispatch = useDispatch();
   const rooms = useSelector(roomList);
+  const [roomsSorted, setRoomsSorted] = useState([...rooms]);
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    dispatch(reestructureList({ dragIndex: dragIndex, hoverIndex: hoverIndex }));
+    setRoomsSorted((prevCards) =>
+      update(prevCards, {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, prevCards[dragIndex]],
+        ],
+      }),
+    );
   }, []);
   const renderRoom = useCallback((room, index) => <TableRow key={room.id} index={index} room={room} moveCard={moveCard} />);
   return (
@@ -35,7 +39,7 @@ export const Rooms = () => {
               <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
             </thead>
             <tbody>
-              {rooms.map((room, index) => renderRoom(room, index))}
+              {roomsSorted.map((room, index) => renderRoom(room, index))}
             </tbody>
           </Table>
         </Container>
