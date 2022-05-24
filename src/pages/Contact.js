@@ -5,16 +5,26 @@ import { RecentMessages } from "../components/RecentMessages";
 import { allContact } from "../features/contact/contactSlice";
 import { useSelector } from "react-redux";
 import { Table, StatusBadge } from "../components/TableStyleComponent";
+import { useState, useEffect } from "react";
+import { splitForPagination } from "../services/pagination";
+import { Pagination } from "../components/Pagination";
+
 export const Contact = () => {
   const contact = useSelector(allContact);
+  const [contactPages, setContactPages] = useState(splitForPagination(contact));
+  const [page, setPage] = useState(0);
   const dataToDisplay = ["Order ID", "Date", "Customer", "Comment", "Action"];
+  useEffect(() => {
+    setContactPages(splitForPagination(contact));
+  }, [contact]);
+  const handleChangePage = (number) => setPage(number);
 
   return (
     <Page>
       <TopBar>
         <h1>Contact</h1>
       </TopBar>
-      <Container>
+      <Container style={{ paddingTop: "0" }}>
         <BoxFlexRow bg="transparent" notBoxShadow={true}>
           <RecentMessages />
         </BoxFlexRow>
@@ -23,11 +33,12 @@ export const Contact = () => {
             <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
           </thead>
           <tbody>
-            {contact.map(room => {
+            {contactPages[page].map(room => {
               return (<TableRow key={room.id} room={room} />);
             })}
           </tbody>
         </Table>
+        <Pagination allItems={contact} pages={contactPages} onClick={handleChangePage} actualPage={page} />
 
       </Container>
     </Page>
