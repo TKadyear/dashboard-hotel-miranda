@@ -33,7 +33,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "fix": "eslint src --fix",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +56,7 @@
   },
   "devDependencies": {
     "cypress": "^9.6.1",
-    "eslint-plugin-cypress": "^2.12.1"
+    "eslint-plugin-cypress": "^2.12.1",
+    "gh-pages": "^4.0.0"
   }
 }
