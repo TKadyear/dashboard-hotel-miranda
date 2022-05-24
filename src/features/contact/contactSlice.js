@@ -11,6 +11,7 @@ export const contactSlice = createSlice({
   }
 });
 
+// IMPROVE ?
 
 export const allContact = state => [...state.contact].sort((a, b) => {
   const dateA = new Date(a.review.date);
