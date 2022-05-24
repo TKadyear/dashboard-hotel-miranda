@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Pagination } from "../components/Pagination";
 import { Page } from "../components/PageContainer";
-
+/* TODO Do the splitforpagination here and take out of the logic of the state.
+*/
 export const Bookings = () => {
   const [page, setPage] = useState(0);
   const rooms = useSelector(bookingsList);
