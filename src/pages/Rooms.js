@@ -6,7 +6,7 @@ import { roomList } from "../features/rooms/roomsSlice";
 import { Page } from "../components/PageContainer";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import update from "immutability-helper";
 
 const ItemType = "room";
@@ -15,6 +15,10 @@ export const Rooms = () => {
   const rooms = useSelector(roomList);
   const [roomsSorted, setRoomsSorted] = useState([...rooms]);
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
+  const sortDefault = "number";
+  useEffect(() => {
+    setRoomsSorted([...rooms].sort((a, b) => a.info[sortDefault] - b.info[sortDefault]));
+  }, []);
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     setRoomsSorted((prevCards) =>
