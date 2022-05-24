@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { MenuOpenContext } from "../App";
+import { useOpen } from "../App/context-open";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -7,6 +6,6 @@ const Container = styled.div`
   padding-left: ${props => props.open ? "300px" : "70px"} ;
   `;
 export const Page = ({ children }) => {
-  const open = useContext(MenuOpenContext);
+  const open = useOpen();
   return (<Container open={open}>{children}</Container>);
 };

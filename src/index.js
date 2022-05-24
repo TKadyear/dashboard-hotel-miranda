@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import store from "./App/store";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./App/theme";
+import { MenuOpenProvider } from "./App/context-open";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +16,9 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <AuthProvider>
-          <App />
+          <MenuOpenProvider>
+            <App />
+          </MenuOpenProvider>
         </AuthProvider>
       </ThemeProvider>
     </Provider>

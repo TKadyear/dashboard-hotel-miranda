@@ -4,10 +4,16 @@
   "private": true,
   "homepage": "https://tkadyear.github.io/dashboard-hotel-miranda/",
   "dependencies": {
+    "@fullcalendar/core": "^5.11.0",
+    "@fullcalendar/daygrid": "^5.11.0",
+    "@fullcalendar/list": "^5.11.0",
+    "@fullcalendar/react": "^5.11.1",
+    "@fullcalendar/timegrid": "^5.11.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "immutability-helper": "^3.1.1",
     "js-sha256": "^0.9.0",
     "react": "^18.1.0",
     "react-dnd": "^16.0.1",
@@ -26,7 +32,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fix": "eslint src --fix"
+    "fix": "eslint src --fix",
+    "cypress": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +52,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^9.6.1",
+    "eslint-plugin-cypress": "^2.12.1"
   }
 }

@@ -17,10 +17,15 @@ const BtnNumberPage = styled(BtnPage)`
   background: ${props => props.selected ? props.theme.colors.primary : props.theme.colors.background};
   color: ${props => props.selected ? props.theme.colors.background : props.theme.colors.textColor};
   transition: 250ms;
-
+`;
+const DivPagination = styled.div`
+  margin: 1rem 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 `;
 
-export const Pagination = ({ pages, onClick, actualPage }) => {
+export const Pagination = ({ allItems, pages, onClick, actualPage }) => {
   const handlePreviousPage = () => {
     const newPage = actualPage - 1 < 0 ? actualPage : actualPage - 1;
     onClick(newPage);
@@ -30,10 +35,13 @@ export const Pagination = ({ pages, onClick, actualPage }) => {
     onClick(newPage);
   };
   return (
-    <div>
-      <BtnPage onClick={handlePreviousPage}>Previous Page</BtnPage>
-      {pages.map((v, i) => <BtnNumberPage selected={actualPage === i} key={v + i} onClick={() => onClick(i)}>{i + 1}</BtnNumberPage>)}
-      <BtnPage onClick={handleNextPage}>Next Page</BtnPage>
-    </div>
+    <DivPagination>
+      <p>Showing {pages[actualPage].length} of {allItems.length} items</p>
+      <div>
+        <BtnPage onClick={handlePreviousPage}>Previous Page</BtnPage>
+        {pages.map((v, i) => <BtnNumberPage selected={actualPage === i} key={v + i} onClick={() => onClick(i)}>{i + 1}</BtnNumberPage>)}
+        <BtnPage onClick={handleNextPage}>Next Page</BtnPage>
+      </div>
+    </DivPagination>
   );
 };
