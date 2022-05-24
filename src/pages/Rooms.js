@@ -32,7 +32,7 @@ export const Rooms = () => {
         <Container>
           <Table>
             <thead>
-              {dataToDisplay.map((header, index) => <tr key={index}><th >{header}</th></tr>)}
+              <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
             </thead>
             <tbody>
               {rooms.map((room, index) => renderRoom(room, index))}
@@ -104,7 +104,7 @@ const TableRow = ({ room, moveCard, index }) => {
   drag(drop(ref));
   return (
     <TRowDnd ref={ref} isDragging={isDragging} data-handler-id={handlerId}>
-      <td>{room.id}</td>
+      <td>{room.info.bedType + "-" + room.info.number}</td>
       <td>{room.info.bedType}</td>
       <td>{room.info.number}</td>
       <td>{room.info.facilities}</td>

@@ -10,7 +10,6 @@ export const Table = styled.table`
   font-size: 0.75rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   thead tr {
-    display:inline;
     font-size: 1rem;
     text-align: left;
   }
@@ -18,7 +17,6 @@ export const Table = styled.table`
     padding: 12px 15px;
   }
   thead, tbody tr {
-    cursor: pointer;
     transition: 200ms;
     border-bottom: 1px solid #dddddd;
   }
@@ -32,14 +30,14 @@ export const Table = styled.table`
 }
 `;
 export const TRowDnd = styled.tr`
+  transition: 0.2s;
   cursor: move;
   opacity: ${({ isDragging }) => isDragging ? 0 : 1};
-  /* display: ${({ isDragging }) => isDragging ? "none" : "block"}; */
 `;
 export const StatusBadge = styled.div`
-color: white;
-text - align: center;
-background - color: ${props => props.status ? "#5ad07a" : "#e23428"};
-padding: 0.75rem;
-border - radius: 12px;
+  color: white;
+  text-align: center;
+  background-color: ${props => props.status ? "#5ad07a" : "#e23428"};
+  padding: 0.75rem;
+  border-radius: 12px;
 `;
