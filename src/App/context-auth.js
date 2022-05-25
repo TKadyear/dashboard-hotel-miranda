@@ -8,7 +8,7 @@ const nameLogin = "login";
 
 const initialStateUser = () => JSON.parse(localStorage.getItem(nameLogin)) || {};
 const checkUser = (obj) => Object.keys(obj).length != 0;
-const initialStateAuth = () => (sessionStorage.getItem(nameKey) != null && checkUser(user)) || initialStateUser() != null;
+const initialStateAuth = () => (sessionStorage.getItem(nameKey) != null && checkUser(initialStateAuthentication.login)) || initialStateUser() != null;
 
 const initialStateAuthentication = {
   auth: initialStateAuth,
@@ -32,9 +32,9 @@ const reducer = (state, action) => {
       localStorage.removeItem(nameLogin);
       return { auth: false, login: {} };
     case ACTION_TYPES.EDIT_USERNAME:
-      return { ...state, login: { ...login, name: action.payload } };
+      return { ...state, login: { ...state.login, name: action.payload } };
     case ACTION_TYPES.EDIT_EMAIL:
-      return { ...state, login: { ...login, email: action.payload } };
+      return { ...state, login: { ...state.login, email: action.payload } };
     default:
       console.error("This is not an action: " + action.type);
       return state;
