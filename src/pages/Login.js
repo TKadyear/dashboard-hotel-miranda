@@ -48,9 +48,10 @@ export const Login = () => {
     const login = { user: user, password: password };
     const isValid = validationUser(dataUsers, login);
     setInvalid(!isValid);
+    /* TO ASK Extract the logic of validation User to AuthReducer */
     if (isValid) {
       const employee = findUser(dataUsers, login.user);
-      const authLogin = { name: employee.personal_info.firstName + " " + employee.personal_info.surname, email: employee.personal_info.email };
+      const authLogin = { id: employee.id, name: employee.personal_info.firstName + " " + employee.personal_info.surname, email: employee.personal_info.email };
       reducer({ type: ACTION_TYPES.LOG_IN, payload: { auth: isValid, login: authLogin } });
       return navigate("/", { replace: true });
     }

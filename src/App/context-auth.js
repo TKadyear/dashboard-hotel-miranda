@@ -8,11 +8,10 @@ const nameLogin = "login";
 
 const initialStateUser = () => JSON.parse(localStorage.getItem(nameLogin)) || {};
 const checkUser = (obj) => Object.keys(obj).length != 0;
-const initialStateAuth = () => (sessionStorage.getItem(nameKey) != null && checkUser(initialStateAuthentication.login)) || initialStateUser() != null;
-
+const initialStateAuth = () => (sessionStorage.getItem(nameKey) != null) || checkUser(initialStateUser());
 const initialStateAuthentication = {
-  auth: initialStateAuth,
-  login: initialStateUser
+  auth: initialStateAuth(),
+  login: initialStateUser()
 };
 export const ACTION_TYPES = {
   LOG_IN: "sessionLogin/logIn",
