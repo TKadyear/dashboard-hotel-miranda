@@ -8,6 +8,12 @@ export const bookingsSlice = createSlice({
   name: "bookings",
   initialState: [],
   reducers: {
+    updateBookedRoom: (state, action) => {
+      return state.map(room => room.id === action.payload.id ? action.payload : room);
+    },
+    deleteBookedRoom: (state, action) => {
+      return state.filter(room => room.id != action.payload);
+    }
   },
   extraReducers(builder) {
     builder
@@ -19,6 +25,7 @@ export const bookingsSlice = createSlice({
 
 
 export const bookingsList = state => state.bookings;
+/* IMPROVE Booking must be a single endpoint with the all necesary data */
 export const bookings = id => state => {
   const bookedRoom = [...state.bookings].find(room => room.id === id);
   const descriptionRoom = [...state.rooms].find(room => room.id === bookedRoom.room.id);
@@ -26,6 +33,5 @@ export const bookings = id => state => {
 };
 
 
-// export const { addPhoto, removePhoto, editDescription } = myPhotosSlice.actions;
 
 export default bookingsSlice.reducer;

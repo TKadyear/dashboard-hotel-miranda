@@ -7,6 +7,12 @@ export const usersSlice = createSlice({
   name: "users",
   initialState: initialState,
   reducers: {
+    updateUser: (state, action) => {
+      return state.map(user => user.id === action.payload.id ? action.payload : user);
+    },
+    deleteUser: (state, action) => {
+      return state.filter(user => user.id != action.payload.id);
+    }
   },
   extraReducers(builder) {
     builder
@@ -18,7 +24,5 @@ export const usersSlice = createSlice({
 
 
 export const allUsers = state => state.users;
-
-// export const { addPhoto, removePhoto, editDescription } = myPhotosSlice.actions;
 
 export default usersSlice.reducer;
