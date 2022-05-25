@@ -146,6 +146,9 @@ export const InfoFooter = styled.div`
   }
 `;
 export const Bar = styled.div`
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
   height: 75px;
   padding: 1rem 1.5rem;
   margin-bottom: 2.75rem;
