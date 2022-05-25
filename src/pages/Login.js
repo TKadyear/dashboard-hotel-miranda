@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, ContainerCard, Input } from "../components/style-component";
-import { useAuth, useAuthUpdate } from "../App/context-auth";
+import { useLogin, useDispatchLogin, ACTION_TYPES } from "../App/context-auth";
 import { allUsers } from "../features/users/usersSlice";
 import { findUser, validationUser } from "../services/validation-db";
 import { useSelector } from "react-redux";
@@ -14,6 +14,7 @@ const Container = styled.div`
   height: 100%;
   padding: 2.5rem;
 `;
+
 const Error = styled.p`
   color: ${props => props.theme.colors.secondaryRed};
   font-weight:bold;
@@ -25,8 +26,8 @@ export const Login = () => {
   const [requiredUser, setRequiredUser] = useState(false);//Initialize in false because the first view of the page is not
   const [requiredPassword, setRequiredPassword] = useState(false);
   const [invalid, setInvalid] = useState(false);
-  const auth = useAuth();
-  const setAuth = useAuthUpdate();
+  const { auth } = useLogin();
+  const reducer = useDispatchLogin();
   const navigate = useNavigate();
   const dataUsers = useSelector(allUsers);
   useEffect(() => {
@@ -47,13 +48,13 @@ export const Login = () => {
     const login = { user: user, password: password };
     const isValid = validationUser(dataUsers, login);
     setInvalid(!isValid);
+    /* TO ASK Extract the logic of validation User to AuthReducer */
     if (isValid) {
       const employee = findUser(dataUsers, login.user);
-      const authEmployee = { name: employee.personal_info.firstName + " " + employee.personal_info.surname, email: employee.personal_info.email };
-      setAuth(isValid, authEmployee);
+      const authLogin = { id: employee.id, name: employee.personal_info.firstName + " " + employee.personal_info.surname, email: employee.personal_info.email };
+      reducer({ type: ACTION_TYPES.LOG_IN, payload: { auth: isValid, login: authLogin } });
       return navigate("/", { replace: true });
     }
-    setAuth(isValid);
   };
   const errorMessage = () => {
     if (requiredUser && requiredPassword) {

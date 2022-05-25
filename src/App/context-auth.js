@@ -1,41 +1,58 @@
-import React, { useContext, useState } from "react";
-export const AuthContext = React.createContext();
-export const UserContext = React.createContext();
-export const AuthUpdateContext = React.createContext();
+import React, { useContext, useReducer } from "react";
+export const LoginContext = React.createContext();
+export const DispatcherContext = React.createContext();
 
 const nameKey = "auth";
 const nameLogin = "login";
-const initialStateUser = () => JSON.parse(localStorage.getItem(nameLogin));
-const checkUser = (obj) => Object.keys(obj).length != 0;
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(initialStateUser() || {});
-  const initialStateAuth = () => (sessionStorage.getItem(nameKey) != null && checkUser(user)) || initialStateUser() != null;
-  const [auth, setAuth] = useState(initialStateAuth());
-  const toggleAuth = (value, user) => {
-    if (value) {
-      setUser(user);
-      sessionStorage.setItem(nameKey, value);
-      localStorage.setItem(nameLogin, JSON.stringify(user));
-    } else {
+
+const initialStateUser = () => JSON.parse(localStorage.getItem(nameLogin)) || {};
+const checkUser = (obj) => Object.keys(obj).length != 0;
+const initialStateAuth = () => (sessionStorage.getItem(nameKey) != null) || checkUser(initialStateUser());
+const initialStateAuthentication = {
+  auth: initialStateAuth(),
+  login: initialStateUser()
+};
+export const ACTION_TYPES = {
+  LOG_IN: "sessionLogin/logIn",
+  LOG_OUT: "sessionLogin/logOut",
+  EDIT_USERNAME: "sessionLogin/editUserName",
+  EDIT_EMAIL: "sessionLogin/editEmail"
+};
+// TO ASK Edit username and email has to be related to the redux state of users?
+const reducer = (state, action) => {
+  switch (action.type) {
+    case ACTION_TYPES.LOG_IN:
+      sessionStorage.setItem(nameKey, action.payload.auth);
+      localStorage.setItem(nameLogin, JSON.stringify(action.payload.login));
+      return { auth: true, login: action.payload };
+    case ACTION_TYPES.LOG_OUT:
       sessionStorage.removeItem(nameKey);
       localStorage.removeItem(nameLogin);
-    }
-    setAuth(value);
-  };
+      return { auth: false, login: {} };
+    case ACTION_TYPES.EDIT_USERNAME:
+      return { ...state, login: { ...state.login, name: action.payload } };
+    case ACTION_TYPES.EDIT_EMAIL:
+      return { ...state, login: { ...state.login, email: action.payload } };
+    default:
+      console.error("This is not an action: " + action.type);
+      return state;
+  }
+};
+
+
+export function AuthProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialStateAuthentication);
   return (
-    <AuthContext.Provider value={auth}>
-      <UserContext.Provider value={user}>
-        <AuthUpdateContext.Provider value={toggleAuth}>
-          {children}
-        </AuthUpdateContext.Provider>
-      </UserContext.Provider>
-    </AuthContext.Provider>
+    <LoginContext.Provider value={state}>
+      <DispatcherContext.Provider value={dispatch}>
+        {children}
+      </DispatcherContext.Provider >
+    </LoginContext.Provider>
   );
 }
 
 // Custom Hooks
-export const useAuth = () => useContext(AuthContext);
-export const useEmployee = () => useContext(UserContext);
+export const useLogin = () => useContext(LoginContext);
+export const useDispatchLogin = () => useContext(DispatcherContext);
 
-export const useAuthUpdate = () => useContext(AuthUpdateContext);

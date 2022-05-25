@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuth } from "./App/context-auth";
+import { useLogin } from "./App/context-auth";
 import { Login } from "./pages/Login";
 import { NoMatch } from "./pages/NoMatch";
 import { NavBar } from "./components/NavBar";
@@ -7,7 +7,7 @@ import { links, dynamicLinks } from "./allPrivatesRoutes";
 
 
 const PrivateRoute = (props) => {
-  const auth = useAuth();
+  const { auth } = useLogin();
   return !auth ? (<Navigate to="/login" />) : props.component;
 };
 
