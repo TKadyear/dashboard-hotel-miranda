@@ -1,23 +1,28 @@
 import { TopBar } from "../components/NavBar";
 import { Page } from "../components/PageContainer";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Table, StatusBadge } from "../components/TableStyleComponent";
 import { useState, useEffect } from "react";
 import { splitForPagination } from "../services/pagination";
 import { Pagination } from "../components/Pagination";
-import { allUsers } from "../features/users/usersSlice";
+import { allUsers, fetchUsers } from "../features/users/usersSlice";
 import { Container } from "../components/style-component";
 import { useLogin } from "../App/context-auth";
 
 export const Users = () => {
   const users = useSelector(allUsers);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
   const { login } = useLogin();
-  const [usersPages, setUsersPages] = useState(splitForPagination(users));
+  const [usersPages, setUsersPages] = useState([]);
   const [page, setPage] = useState(0);
   const dataToDisplay = ["Name", "Job Desk", "E-mail", "Status"];
   useEffect(() => {
     setUsersPages(splitForPagination(users));
   }, [users]);
+
   const handleChangePage = (number) => setPage(number);
 
   return (
@@ -25,7 +30,7 @@ export const Users = () => {
       <TopBar>
         <h1>Users</h1>
       </TopBar>
-      <Container>
+      {usersPages.length && <Container>
         <Table>
           <thead>
             <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
@@ -39,7 +44,7 @@ export const Users = () => {
         </Table>
         <Pagination allItems={users} pages={usersPages} onClick={handleChangePage} actualPage={page} />
 
-      </Container>
+      </Container>}
     </Page>
   );
 };

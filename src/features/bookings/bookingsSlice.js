@@ -1,9 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
+export const fetchBookings = createAsyncThunk("bookings/fetchBookings", async () => {
+  return new Promise(resolve => setTimeout(resolve(initialState), 0));
+});
+
 export const bookingsSlice = createSlice({
   name: "bookings",
-  initialState: initialState,
+  initialState: [],
   reducers: {
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchBookings.fulfilled, (state, action) => {
+        return action.payload;
+      });
   }
 });
 

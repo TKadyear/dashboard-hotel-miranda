@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
 import update from "immutability-helper";
+
+export const fetchRooms = createAsyncThunk("rooms/fetchRooms", async () => {
+  return new Promise(resolve => setTimeout(resolve(initialState), 0));
+});
 
 export const roomsSlice = createSlice({
   name: "rooms",
@@ -15,6 +19,12 @@ export const roomsSlice = createSlice({
         ],
       });
     }
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchRooms.fulfilled, (state, action) => {
+        return action.payload;
+      });
   }
 });
 
