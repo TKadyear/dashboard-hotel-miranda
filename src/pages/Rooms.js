@@ -1,8 +1,9 @@
 import { Container } from "../components/style-component";
 import { TopBar } from "../components/NavBar";
 import { Table, StatusBadge, TRowDnd } from "../components/TableStyleComponent";
-import { useSelector } from "react-redux";
-import { roomList } from "../features/rooms/roomsSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { roomList, fetchRooms } from "../features/rooms/roomsSlice";
+// import { reestructureList } from "../features/rooms/roomsSlice";
 import { Page } from "../components/PageContainer";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -13,14 +14,19 @@ const ItemType = "room";
 
 export const Rooms = () => {
   const rooms = useSelector(roomList);
+  const dispatch = useDispatch();
   const [roomsSorted, setRoomsSorted] = useState([...rooms]);
   const dataToDisplay = ["Room Name", "Bed Type", "Room Number", "Facilities", "Rate", "Status"];
   const sortDefault = "number";
+  useEffect(() => {
+    dispatch(fetchRooms());
+  }, []);
   useEffect(() => {
     setRoomsSorted([...rooms].sort((a, b) => a.info[sortDefault] - b.info[sortDefault]));
   }, []);
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
+    // dispatch(reestructureList({ dragIndex: dragIndex, hoverIndex: hoverIndex }));
     setRoomsSorted((prevCards) =>
       update(prevCards, {
         $splice: [
@@ -38,14 +44,15 @@ export const Rooms = () => {
           <h1>Rooms</h1>
         </TopBar>
         <Container>
-          <Table>
-            <thead>
-              <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
-            </thead>
-            <tbody>
-              {roomsSorted.map((room, index) => renderRoom(room, index))}
-            </tbody>
-          </Table>
+          {rooms.length &&
+            <Table>
+              <thead>
+                <tr>{dataToDisplay.map((header, index) => <th key={index}>{header}</th>)}</tr>
+              </thead>
+              <tbody>
+                {roomsSorted.map((room, index) => renderRoom(room, index))}
+              </tbody>
+            </Table>}
         </Container>
       </Page>
     </DndProvider>

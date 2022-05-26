@@ -2,8 +2,8 @@ import { Container, BoxFlexRow } from "../components/style-component";
 import { Page } from "../components/PageContainer";
 import { TopBar } from "../components/NavBar";
 import { RecentMessages } from "../components/RecentMessages";
-import { allContact } from "../features/contact/contactSlice";
-import { useSelector } from "react-redux";
+import { allContact, fetchContact } from "../features/contact/contactSlice";
+import { useSelector, useDispatch } from "react-redux";
 import { Table, StatusBadge } from "../components/TableStyleComponent";
 import { useState, useEffect } from "react";
 import { splitForPagination } from "../services/pagination";
@@ -11,9 +11,17 @@ import { Pagination } from "../components/Pagination";
 
 export const Contact = () => {
   const contact = useSelector(allContact);
-  const [contactPages, setContactPages] = useState(splitForPagination(contact));
+  const [contactPages, setContactPages] = useState([]);
   const [page, setPage] = useState(0);
   const dataToDisplay = ["Order ID", "Date", "Customer", "Comment", "Action"];
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (contact.length === 0) {
+      dispatch(fetchContact());
+      // } else {
+      //   setContactPages(splitForPagination(contact));
+    }
+  }, []);
   useEffect(() => {
     setContactPages(splitForPagination(contact));
   }, [contact]);
@@ -24,7 +32,7 @@ export const Contact = () => {
       <TopBar>
         <h1>Contact</h1>
       </TopBar>
-      <Container style={{ paddingTop: "0" }}>
+      {contactPages.length && <Container style={{ paddingTop: "0" }}>
         <BoxFlexRow bg="transparent" notBoxShadow={true}>
           <RecentMessages />
         </BoxFlexRow>
@@ -39,8 +47,7 @@ export const Contact = () => {
           </tbody>
         </Table>
         <Pagination allItems={contact} pages={contactPages} onClick={handleChangePage} actualPage={page} />
-
-      </Container>
+      </Container>}
     </Page>
   );
 };
