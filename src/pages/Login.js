@@ -23,7 +23,7 @@ const Error = styled.p`
 export const Login = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [requiredUser, setRequiredUser] = useState(false);//Initialize in false because the first view of the page is not
+  const [requiredUser, setRequiredUser] = useState(false);
   const [requiredPassword, setRequiredPassword] = useState(false);
   const [invalid, setInvalid] = useState(false);
   const { auth } = useLogin();

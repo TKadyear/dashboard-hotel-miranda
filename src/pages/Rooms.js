@@ -3,7 +3,6 @@ import { TopBar } from "../components/NavBar";
 import { Table, StatusBadge, TRowDnd } from "../components/TableStyleComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { roomList, fetchRooms } from "../features/rooms/roomsSlice";
-// import { reestructureList } from "../features/rooms/roomsSlice";
 import { Page } from "../components/PageContainer";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -26,7 +25,6 @@ export const Rooms = () => {
   }, []);
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    // dispatch(reestructureList({ dragIndex: dragIndex, hoverIndex: hoverIndex }));
     setRoomsSorted((prevCards) =>
       update(prevCards, {
         $splice: [

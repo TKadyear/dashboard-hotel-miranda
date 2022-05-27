@@ -18,8 +18,6 @@ export const Contact = () => {
   useEffect(() => {
     if (contact.length === 0) {
       dispatch(fetchContact());
-      // } else {
-      //   setContactPages(splitForPagination(contact));
     }
   }, []);
   useEffect(() => {
