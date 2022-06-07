@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { Logo } from "../components/NavBarStyleComponents";
 import { IoBedOutline, IoTodayOutline, IoEnterOutline } from "react-icons/io5";
 import { CalendarBookedRooms } from "../components/Calendar";
-import { Spinner, Box, SvgBox, BoxFlexRow } from "../components/style-component";
+import { Box, SvgBox, BoxFlexRow } from "../components/style-component";
 import { RecentMessages } from "../components/RecentMessages";
-
+import { BarChart } from "../components/BarChart";
 const Container = styled.main`
   width: 90% ;
   display: grid;
@@ -65,7 +65,8 @@ export const Home = () => {
         </Box>
         <CalendarBookedRooms />
         <Box style={{ gridColumn: "3/5" }} >
-          <Spinner></Spinner>
+          {/* <Spinner></Spinner> */}
+          <BarChart />
         </Box>
         {/* <Box style={{ gridColumn: "1/5" }} /> */}
         <BoxFlexRow style={{ gridColumn: "1/5" }}>
