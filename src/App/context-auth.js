@@ -19,7 +19,7 @@ export const ACTION_TYPES = {
   EDIT_USERNAME: "sessionLogin/editUserName",
   EDIT_EMAIL: "sessionLogin/editEmail"
 };
-// TO ASK Edit username and email has to be related to the redux state of users?
+// TO ASK Edit username and email has to be related to the redux state of users? No hace falta...
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPES.LOG_IN:
