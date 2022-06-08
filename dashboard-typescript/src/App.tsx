@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
-
+import styled from 'styled-components';
+// TODO Check the validation of eslint
+// TODO Check the dependencies of style components with vite
+const Title = styled.h1`
+background:red;
+`;
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div className="App">
       <header className="App-header">
+        <Title>Hello world!</Title>
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
