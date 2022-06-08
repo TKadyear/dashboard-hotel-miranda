@@ -1,49 +1,28 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import styled from 'styled-components';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Login } from "./pages/Login";
+import { NoMatch } from "./pages/NoMatch";
+import { links, dynamicLinks } from "./allPrivatesRoutes";
+
 // TODO Check the validation of eslint
 // TODO Check the dependencies of style components with vite
-const Title = styled.h1`
-background:red;
-`;
+type Props = {
+  component: JSX.Element
+}
+const PrivateRoute = ({ component }: Props) => {
+  const auth = false;
+  return !auth ? (<Navigate to="/login" />) : component;
+};
 function App() {
-  const [count, setCount] = useState(0)
-
+  const allRoutes = [...links].concat(dynamicLinks);
   return (
     <div className="App">
-      <header className="App-header">
-        <Title>Hello world!</Title>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        {allRoutes.map((route, index) => (//All the privates Routes
+          <Route key={route.name + index} path={route.path}
+            element={<PrivateRoute component={route.page} />} />))}
+        <Route path="/*" element={<NoMatch />} />
+      </Routes>
     </div>
   )
 }
