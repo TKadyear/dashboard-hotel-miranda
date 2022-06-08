@@ -1,5 +1,21 @@
 export const initialState = [
   {
+    "id": "b65ac584-5417-4f35-a5eb-80ac2ab8357",
+    "personal_info": {
+      "firstName": "Guest",
+      "surname": "Temporal",
+      "email": "guest@hotelmiranda.com",
+      "password": "84983c60f7daadc1cb8698621f802c0d9f9a3c3c295c810748fb048115c186ec",
+      "telephone_number": "673567974"
+    },
+    "job": {
+      "start_date": "07 May 2022",
+      "role": "Manager",
+      "duties": "None"
+    },
+    "state": "true"
+  },
+  {
     "id": "b65ac584-5417-4f35-a5eb-80ac2ab832b7",
     "personal_info": {
       "firstName": "Tamara",
@@ -11,7 +27,7 @@ export const initialState = [
     "job": {
       "start_date": "09 May 2022",
       "role": "Manager",
-      "duties": "Trabajar"
+      "duties": "Admin"
     },
     "state": "false"
   },

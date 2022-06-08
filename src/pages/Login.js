@@ -78,11 +78,11 @@ export const Login = () => {
         <label htmlFor="user-input">
           Email Address
         </label>
-        <Input id="user-input" data-cy="user-input" type="text" value={user} onChange={(e) => setUser(e.target.value)} required />
+        <Input id="user-input" data-cy="user-input" type="text" value={user} onChange={(e) => setUser(e.target.value)} required placeholder="guest@hotelmiranda.com" />
         <label htmlFor="password-input">
           Password
         </label>
-        <Input id="password-input" data-cy="password-input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <Input id="password-input" data-cy="password-input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required placeholder="guest" />
         <Button data-cy="submit" onClick={handleSubmit}>Continue</Button>
       </ContainerCard>
     </Container>
