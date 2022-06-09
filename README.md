@@ -54,6 +54,6 @@ $ npm run build
 - Cypress, how to start testing an app starting with the login: [Brian Mann - I see yoour point, but...](https://www.youtube.com/watch?v=5XQOK0v_YRE)
 - Full Calendar: [CSS Customization](https://fullcalendar.io/docs/css-customization)
 - [[Question] How to use FullCalendar with style-components](https://github.com/fullcalendar/fullcalendar-react/issues/100)
-- Full Calendar
+- [Config-vite-eslint-typescript](https://github.com/gxmari007/vite-plugin-eslint)
 ## Author
 - Github - [Tamara Kadyear | TKadyear](https://github.com/TKadyear)

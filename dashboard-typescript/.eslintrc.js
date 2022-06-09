@@ -11,11 +11,13 @@ module.exports = {
     }
   },
   "extends": [
-    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    // "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jest/recommended",
     "plugin:cypress/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -26,9 +28,11 @@ module.exports = {
   "plugins": [
     "react",
     "jest",
-    "cypress"
+    "cypress",
+    "@typescript-eslint"
   ],
   "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off",
     "cypress/no-assigning-return-values": "error",
     "cypress/no-unnecessary-waiting": "error",
     "cypress/assertion-before-screenshot": "warn",
